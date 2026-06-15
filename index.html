@@ -192,6 +192,13 @@
     return new Date(p[0], p[1] - 1, p[2]);
   }
 
+
+  function flagEmojiFromCode(code) {
+    const cc = String(code || '').trim().slice(0,2).toUpperCase();
+    if (!/^[A-Z]{2}$/.test(cc)) return '📍';
+    return String.fromCodePoint(...[...cc].map(ch => 127397 + ch.charCodeAt(0)));
+  }
+
   function dateValue(date) {
     return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
   }
@@ -271,7 +278,7 @@
   function renderIcon(icon, cls='') {
     if (String(icon).startsWith('flag:')) {
       const code = icon.slice(5);
-      return `<img class="flag ${cls}" src="https://flagcdn.com/w40/${code}.png" alt="">`;
+      return `<span class="flag-emoji ${cls}" aria-hidden="true">${flagEmojiFromCode(code)}</span>`;
     }
     return `<span class="${cls}">${escapeHtml(icon || '📍')}</span>`;
   }

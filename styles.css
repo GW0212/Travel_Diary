@@ -1006,3 +1006,55 @@ textarea { resize: vertical; }
     padding-bottom: 24px;
   }
 }
+
+
+/* Mobile/flag fix: use emoji flags and pin selected panel edit/delete buttons inside top-right */
+.flag-emoji {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.45rem;
+  line-height: 1;
+}
+.destination-icon .flag-emoji {
+  font-size: 1.35rem;
+}
+.selected-icon .flag-emoji.large-flag {
+  font-size: 2.5rem;
+}
+.icon-cell .flag-emoji {
+  font-size: 1.35rem;
+}
+
+@media (max-width: 640px) {
+  .selected-panel {
+    position: relative;
+    padding-right: 72px;
+  }
+
+  .selected-title {
+    padding-right: 0;
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  .selected-actions {
+    position: static;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    padding-right: 0;
+  }
+
+  .selected-actions #editDestinationBtn,
+  .selected-actions #deleteDestinationBtn {
+    position: absolute;
+    right: 16px;
+  }
+
+  .selected-actions #editDestinationBtn {
+    top: 16px;
+  }
+
+  .selected-actions #deleteDestinationBtn {
+    top: 58px;
+  }
+}
