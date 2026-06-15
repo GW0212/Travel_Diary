@@ -197,6 +197,7 @@
   ];
 
   const MONTHS = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+  const MONTH_LABELS_KO = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
 
   let state = null;
   let iconTargetCallback = null;
@@ -209,6 +210,7 @@
   let titleAutoFillSource = null;
   let cuteCalendarContext = null;
   let cuteCalendarViewDate = null;
+  let cuteCalendarPickerMode = 'days';
   let cardObserver = null;
 
   // ---------- 상태 관리 ----------
@@ -1287,6 +1289,7 @@
     const selected = parseDateValue(value) || new Date();
     cuteCalendarContext = { anchor, selectedValue: dateToValue(selected), onSelect };
     cuteCalendarViewDate = new Date(selected.getFullYear(), selected.getMonth(), 1);
+    cuteCalendarPickerMode = 'days';
     renderCuteCalendar();
     popover.hidden = false;
     positionCuteCalendar(anchor);
@@ -1296,6 +1299,7 @@
     const popover = document.getElementById('cuteCalendarPopover');
     if (popover) popover.hidden = true;
     cuteCalendarContext = null;
+    cuteCalendarPickerMode = 'days';
   }
 
   function positionCuteCalendar(anchor) {
@@ -1317,6 +1321,48 @@
     if (!popover || !cuteCalendarViewDate || !cuteCalendarContext) return;
     const year = cuteCalendarViewDate.getFullYear();
     const month = cuteCalendarViewDate.getMonth();
+
+    if (cuteCalendarPickerMode === 'years') {
+      const startYear = Math.floor(year / 12) * 12;
+      const yearButtons = [];
+      for (let i = 0; i < 12; i += 1) {
+        const y = startYear + i;
+        const active = y === year ? ' is-selected' : '';
+        yearButtons.push(`<button type="button" class="cute-calendar-year${active}" data-calendar-action="select-year" data-year="${y}">${y}년</button>`);
+      }
+      popover.innerHTML = `
+        <div class="cute-calendar-head cute-calendar-head--picker">
+          <button type="button" class="cute-calendar-nav" data-calendar-action="prev-year-range" aria-label="이전 연도 목록">‹</button>
+          <button type="button" class="cute-calendar-title-btn" data-calendar-action="toggle-picker" aria-label="월 선택으로 돌아가기"><span>🐻</span><strong>${startYear}년 - ${startYear + 11}년</strong></button>
+          <button type="button" class="cute-calendar-nav" data-calendar-action="next-year-range" aria-label="다음 연도 목록">›</button>
+        </div>
+        <div class="cute-calendar-year-grid">${yearButtons.join('')}</div>
+        <div class="cute-calendar-foot">
+          <button type="button" class="cute-calendar-today" data-calendar-action="today">오늘</button>
+        </div>
+      `;
+      return;
+    }
+
+    if (cuteCalendarPickerMode === 'months') {
+      const monthButtons = MONTH_LABELS_KO.map((label, index) => {
+        const active = index === month ? ' is-selected' : '';
+        return `<button type="button" class="cute-calendar-month${active}" data-calendar-action="select-month" data-month="${index}">${label}</button>`;
+      }).join('');
+      popover.innerHTML = `
+        <div class="cute-calendar-head cute-calendar-head--picker">
+          <button type="button" class="cute-calendar-nav" data-calendar-action="prev-year" aria-label="이전 년도">‹</button>
+          <button type="button" class="cute-calendar-title-btn" data-calendar-action="open-year-picker" aria-label="연도 선택"><span>🐻</span><strong>${year}년</strong></button>
+          <button type="button" class="cute-calendar-nav" data-calendar-action="next-year" aria-label="다음 년도">›</button>
+        </div>
+        <div class="cute-calendar-month-grid">${monthButtons}</div>
+        <div class="cute-calendar-foot">
+          <button type="button" class="cute-calendar-today" data-calendar-action="today">오늘</button>
+        </div>
+      `;
+      return;
+    }
+
     const first = new Date(year, month, 1);
     const start = new Date(year, month, 1 - first.getDay());
     const today = dateToValue(new Date());
@@ -1334,7 +1380,7 @@
     popover.innerHTML = `
       <div class="cute-calendar-head">
         <button type="button" class="cute-calendar-nav" data-calendar-action="prev" aria-label="이전 달">‹</button>
-        <div class="cute-calendar-title"><span>🐻</span><strong>${year}년 ${month + 1}월</strong></div>
+        <button type="button" class="cute-calendar-title-btn" data-calendar-action="toggle-picker" aria-label="년도와 월 선택"><span>🐻</span><strong>${year}년 ${month + 1}월</strong></button>
         <button type="button" class="cute-calendar-nav" data-calendar-action="next" aria-label="다음 달">›</button>
       </div>
       <div class="cute-calendar-weekdays"><span>일</span><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span></div>
@@ -1797,6 +1843,30 @@
         const action = actionBtn.dataset.calendarAction;
         if (action === 'prev') cuteCalendarViewDate.setMonth(cuteCalendarViewDate.getMonth() - 1);
         if (action === 'next') cuteCalendarViewDate.setMonth(cuteCalendarViewDate.getMonth() + 1);
+        if (action === 'prev-year') cuteCalendarViewDate.setFullYear(cuteCalendarViewDate.getFullYear() - 1);
+        if (action === 'next-year') cuteCalendarViewDate.setFullYear(cuteCalendarViewDate.getFullYear() + 1);
+        if (action === 'prev-year-range') cuteCalendarViewDate.setFullYear(cuteCalendarViewDate.getFullYear() - 12);
+        if (action === 'next-year-range') cuteCalendarViewDate.setFullYear(cuteCalendarViewDate.getFullYear() + 12);
+        if (action === 'toggle-picker') {
+          cuteCalendarPickerMode = cuteCalendarPickerMode === 'days' ? 'months' : 'days';
+        }
+        if (action === 'open-year-picker') {
+          cuteCalendarPickerMode = 'years';
+        }
+        if (action === 'select-year') {
+          const selectedYear = Number(actionBtn.dataset.year);
+          if (Number.isInteger(selectedYear)) {
+            cuteCalendarViewDate.setFullYear(selectedYear);
+            cuteCalendarPickerMode = 'months';
+          }
+        }
+        if (action === 'select-month') {
+          const month = Number(actionBtn.dataset.month);
+          if (Number.isInteger(month) && month >= 0 && month <= 11) {
+            cuteCalendarViewDate.setMonth(month);
+            cuteCalendarPickerMode = 'days';
+          }
+        }
         if (action === 'today') {
           selectCuteDate(todayStr());
           return;

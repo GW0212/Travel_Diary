@@ -3220,3 +3220,193 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   color: #e7e9ee !important;
   box-shadow: 0 6px 16px rgba(0,0,0,.26) !important;
 }
+
+
+/* =========================================================
+   Refinement 26: mobile alignment + cute month/year picker
+   ========================================================= */
+.cute-calendar-title-btn{
+  width: 100%;
+  min-height: 36px;
+  border: 1px solid rgba(200,132,31,.24);
+  background: rgba(255,255,255,.5);
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 0 12px;
+  font-family: var(--font-ui);
+  color: var(--text);
+  transition: transform .15s ease, border-color .15s ease, background .15s ease;
+}
+.cute-calendar-title-btn:hover{
+  transform: translateY(-1px);
+  border-color: var(--amber);
+}
+:root[data-theme="dark"] .cute-calendar-title-btn{
+  background: rgba(255,255,255,.06);
+  border-color: rgba(255,201,77,.18);
+}
+.cute-calendar-month-grid{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 6px;
+}
+.cute-calendar-month{
+  min-height: 38px;
+  border: 1px solid var(--panel-border);
+  border-radius: 14px;
+  background: var(--cream);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: .74rem;
+  transition: transform .12s ease, border-color .12s ease, background .12s ease;
+}
+.cute-calendar-month:hover{
+  transform: translateY(-1px);
+  border-color: var(--amber);
+}
+.cute-calendar-month.is-selected{
+  background: var(--amber);
+  border-color: var(--amber);
+  color: #fff;
+  box-shadow: 0 6px 14px rgba(200,132,31,.28);
+}
+:root[data-theme="dark"] .cute-calendar-month{
+  background: var(--panel-light);
+}
+:root[data-theme="dark"] .cute-calendar-month.is-selected{
+  color: var(--ink);
+}
+
+@media (max-width: 640px){
+  .entry-top{
+    align-items: start !important;
+  }
+  .entry-actions{
+    position: static !important;
+    right: auto !important;
+    top: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 5px !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    justify-self: end !important;
+    align-self: start !important;
+    margin-top: 0 !important;
+  }
+  .entry-actions .btn-icon{
+    width: 30px !important;
+    height: 30px !important;
+    min-width: 30px !important;
+    min-height: 30px !important;
+    border-radius: 10px !important;
+    font-size: .86rem !important;
+    box-shadow: 0 3px 10px rgba(60,45,20,.08) !important;
+  }
+  .entry-title-group{
+    gap: 8px !important;
+  }
+  .entry-date-control{
+    margin-left: 27px !important;
+    align-self: flex-start !important;
+  }
+  .entry-collapsible{
+    padding-left: 27px !important;
+  }
+  .entry-content{
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+    text-align: left !important;
+    max-width: none !important;
+    width: 100% !important;
+  }
+  .entry-media-list,
+  .entry-videos,
+  .entry-places{
+    width: 100% !important;
+  }
+  .board-label{
+    grid-template-columns: minmax(0, 1fr) 42px !important;
+    gap: 10px !important;
+    padding: 0 6px 10px !important;
+  }
+  .board-label-title{
+    justify-content: center !important;
+    text-align: center !important;
+  }
+  .board-label .btn-add-dest{
+    justify-self: end !important;
+    margin-right: 6px !important;
+  }
+
+  .cute-calendar-popover{
+    padding: 10px !important;
+  }
+  .cute-calendar-title-btn{
+    min-height: 30px !important;
+    font-size: .84rem !important;
+    padding: 0 10px !important;
+  }
+  .cute-calendar-month-grid{
+    gap: 6px !important;
+  }
+  .cute-calendar-month{
+    min-height: 30px !important;
+    border-radius: 11px !important;
+    font-size: .66rem !important;
+  }
+}
+
+
+/* =========================================================
+   Refinement 28: Korean month labels + clickable year picker
+   ========================================================= */
+.cute-calendar-year-grid{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 6px;
+}
+.cute-calendar-year{
+  min-height: 38px;
+  border: 1px solid var(--panel-border);
+  border-radius: 14px;
+  background: var(--cream);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: .74rem;
+  transition: transform .12s ease, border-color .12s ease, background .12s ease;
+}
+.cute-calendar-year:hover{
+  transform: translateY(-1px);
+  border-color: var(--amber);
+}
+.cute-calendar-year.is-selected{
+  background: var(--amber);
+  border-color: var(--amber);
+  color: #fff;
+  box-shadow: 0 6px 14px rgba(200,132,31,.28);
+}
+:root[data-theme="dark"] .cute-calendar-year{
+  background: var(--panel-light);
+}
+:root[data-theme="dark"] .cute-calendar-year.is-selected{
+  color: var(--ink);
+}
+@media (max-width: 640px){
+  .cute-calendar-year-grid{
+    gap: 6px !important;
+  }
+  .cute-calendar-year{
+    min-height: 30px !important;
+    border-radius: 11px !important;
+    font-size: .66rem !important;
+  }
+  .cute-calendar-title-btn strong{
+    white-space: nowrap !important;
+  }
+}
