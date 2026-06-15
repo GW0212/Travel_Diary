@@ -1,0 +1,1856 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TRAVEL LOG · 여행 다이어리</title>
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Serif+KR:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="boarding-bg"></div>
+
+<header class="board-header">
+  <button class="theme-toggle" id="themeToggle" type="button" title="다크/라이트 모드 전환" aria-label="다크/라이트 모드 전환">
+    <span class="theme-icon theme-icon--sun">☀️</span>
+    <span class="theme-icon theme-icon--moon">🌙</span>
+  </button>
+  <div class="header-center">
+    <button class="flap-title-btn" id="homeBtn" type="button" title="처음으로 이동">
+      <div class="flap-title" id="flapTitle"></div>
+    </button>
+  </div>
+</header>
+
+<div class="app-layout">
+  <aside class="departures-board">
+    <div class="board-label">
+      <div class="board-label-title">
+        <span>여행지 목록</span>
+      </div>
+      <button class="btn-add-dest" id="addDestBtn" type="button" title="여행지 추가" aria-label="여행지 추가">+</button>
+    </div>
+    <div class="board-columns" aria-hidden="true"></div>
+    <div class="dest-list" id="destList"></div>
+    <div class="board-footer">
+      <div class="data-actions">
+        <button class="btn btn-ghost btn-small" id="exportBtn" type="button">⬇ 내보내기</button>
+        <button class="btn btn-ghost btn-small" id="importBtn" type="button">⬆ 가져오기</button>
+        <input type="file" id="importFile" accept="application/json" hidden>
+      </div>
+    </div>
+  </aside>
+
+  <main class="diary-main" id="diaryMain"></main>
+</div>
+
+<!-- 여행지 추가/수정 모달 -->
+<div class="modal-overlay" id="destModalOverlay">
+  <div class="modal" role="dialog" aria-modal="true">
+    <h3 id="destModalTitle">여행지 추가</h3>
+    <div class="field">
+      <label>아이콘</label>
+      <button type="button" class="icon-select-btn" id="destIconBtn" data-icon="📍">📍</button>
+    </div>
+    <div class="field">
+      <label>나라</label>
+      <input type="text" id="destCountryInput" placeholder="예: 일본">
+    </div>
+    <div class="field">
+      <label>도시</label>
+      <input type="text" id="destCityInput" placeholder="예: 오사카">
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" id="destCancelBtn" type="button">취소</button>
+      <button class="btn btn-primary" id="destSaveBtn" type="button">저장</button>
+    </div>
+  </div>
+</div>
+
+<!-- 아이콘 선택 모달 -->
+<div class="modal-overlay" id="iconModalOverlay">
+  <div class="modal icon-modal" role="dialog" aria-modal="true">
+    <h3>아이콘 선택</h3>
+    <div class="icon-search-row">
+      <input type="text" id="customIconInput" placeholder="원하는 이모지를 직접 입력해도 돼요 (예: 🌋)" maxlength="4">
+      <button class="btn btn-primary btn-small" id="customIconApplyBtn" type="button">적용</button>
+    </div>
+    <div class="icon-group-label">국기</div>
+    <div class="icon-grid" id="flagGrid"></div>
+    <div class="icon-group-label">여행 아이콘</div>
+    <div class="icon-grid" id="iconGrid"></div>
+  </div>
+</div>
+
+<!-- 기록 추가/수정 모달 -->
+<div class="modal-overlay" id="entryModalOverlay">
+  <div class="modal entry-modal" role="dialog" aria-modal="true">
+    <h3 id="entryModalTitle">기록 추가</h3>
+    <div class="field">
+      <label>제목</label>
+      <input type="text" id="entryTitleInput" placeholder="예: 도톤보리의 밤">
+    </div>
+    <div class="field date-field">
+      <label>날짜</label>
+      <div class="cute-date-picker">
+        <input type="hidden" id="entryDateInput">
+        <button type="button" class="cute-date-button" id="entryDateButton" aria-label="기록 날짜 선택">
+          <span class="cute-date-icon" aria-hidden="true">🧸</span>
+          <span class="cute-date-copy">
+            <strong id="entryDateDisplay">날짜 선택</strong>
+            <small>여행한 날을 골라주세요</small>
+          </span>
+          <span class="cute-date-arrow" aria-hidden="true">⌄</span>
+        </button>
+      </div>
+    </div>
+    <div class="field">
+      <label>내용</label>
+      <textarea id="entryContentInput" placeholder="여행에서의 기억을 적어보세요..."></textarea>
+    </div>
+    <div class="field">
+      <label>구글맵 / 유튜브 링크</label>
+      <div class="media-order-actions">
+        <button type="button" class="btn-add-video" id="addLinkBtn">+ 링크 추가</button>
+      </div>
+      <div id="mediaOrderContainer" class="media-order-container"></div>
+      <p class="field-help">URL을 붙여넣으면 구글맵/유튜브를 자동으로 구분해요.</p>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" id="entryCancelBtn" type="button">취소</button>
+      <button class="btn btn-primary" id="entrySaveBtn" type="button">저장</button>
+    </div>
+  </div>
+</div>
+
+<!-- 다이어리 순서 변경 모달 -->
+<div class="modal-overlay" id="orderModalOverlay">
+  <div class="modal order-modal" role="dialog" aria-modal="true">
+    <h3 id="orderModalTitle">순서 변경</h3>
+    <p class="order-modal-desc">다이어리 제목 우측의 숫자로 표시 순서를 지정해 주세요.</p>
+    <div class="order-list" id="orderList"></div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" id="orderCancelBtn" type="button">취소</button>
+      <button class="btn btn-primary" id="orderSaveBtn" type="button">순서 저장</button>
+    </div>
+  </div>
+</div>
+
+<!-- 삭제 확인 모달 -->
+<div class="modal-overlay" id="confirmOverlay">
+  <div class="modal confirm-modal" role="dialog" aria-modal="true">
+    <div class="icon">🗑️</div>
+    <p id="confirmMessage">삭제하시겠습니까?</p>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" id="confirmCancelBtn" type="button">취소</button>
+      <button class="btn btn-danger" id="confirmOkBtn" type="button">삭제</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<div class="cute-calendar-popover" id="cuteCalendarPopover" hidden></div>
+
+<script>
+(function () {
+  'use strict';
+
+  const STORAGE_KEY = 'travelDiaryData_v1';
+
+  const FLAG_CODES = [
+    'kr','jp','cn','tw','hk','th','vn','sg','my','id',
+    'ph','in','np','kh','la','mm','mn','ae','qa','tr',
+    'fr','de','it','es','pt','gb','nl','ch','at','be',
+    'gr','cz','hu','pl','se','no','fi','dk','is','ie',
+    'ru','us','ca','mx','br','ar','cl','pe','au','nz',
+    'eg','ma','za','ke','il','cu'
+  ];
+
+
+  const FLAG_CODE_TO_COUNTRY = {
+    kr: '대한민국', jp: '일본', cn: '중국', tw: '대만', hk: '홍콩', th: '태국', vn: '베트남', sg: '싱가포르', my: '말레이시아', id: '인도네시아',
+    ph: '필리핀', in: '인도', np: '네팔', kh: '캄보디아', la: '라오스', mm: '미얀마', mn: '몽골', ae: '아랍에미리트', qa: '카타르', tr: '튀르키예',
+    fr: '프랑스', de: '독일', it: '이탈리아', es: '스페인', pt: '포르투갈', gb: '영국', nl: '네덜란드', ch: '스위스', at: '오스트리아', be: '벨기에',
+    gr: '그리스', cz: '체코', hu: '헝가리', pl: '폴란드', se: '스웨덴', no: '노르웨이', fi: '핀란드', dk: '덴마크', is: '아이슬란드', ie: '아일랜드',
+    ru: '러시아', us: '미국', ca: '캐나다', mx: '멕시코', br: '브라질', ar: '아르헨티나', cl: '칠레', pe: '페루', au: '호주', nz: '뉴질랜드',
+    eg: '이집트', ma: '모로코', za: '남아프리카공화국', ke: '케냐', il: '이스라엘', cu: '쿠바'
+  };
+
+  // 과거 버전(이모지 국기)으로 저장된 데이터를 국기 코드로 마이그레이션하기 위한 매핑
+  const EMOJI_FLAG_TO_CODE = {
+    '🇰🇷':'kr','🇯🇵':'jp','🇨🇳':'cn','🇹🇼':'tw','🇭🇰':'hk','🇹🇭':'th','🇻🇳':'vn','🇸🇬':'sg','🇲🇾':'my','🇮🇩':'id',
+    '🇵🇭':'ph','🇮🇳':'in','🇳🇵':'np','🇰🇭':'kh','🇱🇦':'la','🇲🇲':'mm','🇲🇳':'mn','🇦🇪':'ae','🇶🇦':'qa','🇹🇷':'tr',
+    '🇫🇷':'fr','🇩🇪':'de','🇮🇹':'it','🇪🇸':'es','🇵🇹':'pt','🇬🇧':'gb','🇳🇱':'nl','🇨🇭':'ch','🇦🇹':'at','🇧🇪':'be',
+    '🇬🇷':'gr','🇨🇿':'cz','🇭🇺':'hu','🇵🇱':'pl','🇸🇪':'se','🇳🇴':'no','🇫🇮':'fi','🇩🇰':'dk','🇮🇸':'is','🇮🇪':'ie',
+    '🇷🇺':'ru','🇺🇸':'us','🇨🇦':'ca','🇲🇽':'mx','🇧🇷':'br','🇦🇷':'ar','🇨🇱':'cl','🇵🇪':'pe','🇦🇺':'au','🇳🇿':'nz',
+    '🇪🇬':'eg','🇲🇦':'ma','🇿🇦':'za','🇰🇪':'ke','🇮🇱':'il','🇨🇺':'cu'
+  };
+
+  const ICONS = [
+    '✈️','🧳','🗺️','🏖️','🏝️','🏔️','⛰️','🗽','🗼','🏯',
+    '🏰','⛩️','🎡','🎢','🚂','🚆','🚌','🚗','⛴️','🛳️',
+    '⚓','🌅','🌄','🌃','🌉','🍜','🍣','☕','🛍️','📷',
+    '🎒','⭐'
+  ];
+
+  const MONTHS = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+
+  let state = null;
+  let iconTargetCallback = null;
+  let confirmCallback = null;
+  let currentDestEditId = null;
+  let currentEntryDestId = null;
+  let currentEntryEditId = null;
+  let currentOrderDestId = null;
+  let titleAutoFillTimer = null;
+  let titleAutoFillSource = null;
+  let cuteCalendarContext = null;
+  let cuteCalendarViewDate = null;
+  let cardObserver = null;
+
+  // ---------- 상태 관리 ----------
+
+  function defaultState() {
+    const destId = uid();
+    const entryId = uid();
+    return {
+      selectedId: destId,
+      destinations: [
+        {
+          id: destId,
+          icon: 'flag:kr',
+          country: '대한민국',
+          city: '서울',
+          entries: [
+            {
+              id: entryId,
+              title: '여행지 다이어리에 오신 것을 환영합니다',
+              date: todayStr(),
+              content:
+                '왼쪽 "여행지 목록"의 + 버튼을 눌러 새로운 여행지를 등록해보세요.\n' +
+                '여행지를 선택한 뒤 "+ 새 기록 추가"를 누르면 그날의 기록을 남길 수 있어요.\n' +
+                '유튜브 링크를 추가하면 롱폼은 16:9, 쇼츠는 9:16 비율로 자동 재생됩니다.\n\n' +
+                '즐거운 여행 기록 되세요! ✈️',
+              videos: [],
+              places: [],
+              collapsed: false
+            }
+          ]
+        }
+      ]
+    };
+  }
+
+  function loadState() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return defaultState();
+      const parsed = JSON.parse(raw);
+      if (!parsed || !Array.isArray(parsed.destinations)) return defaultState();
+      parsed.destinations.forEach((d) => {
+        if (!Array.isArray(d.entries)) d.entries = [];
+        if (!d.icon) d.icon = '📍';
+        if (EMOJI_FLAG_TO_CODE[d.icon]) d.icon = 'flag:' + EMOJI_FLAG_TO_CODE[d.icon];
+        d.entries.forEach((entry) => {
+          normalizeEntryMedia(entry);
+          if (typeof entry.collapsed !== 'boolean') entry.collapsed = false;
+        });
+      });
+      return parsed;
+    } catch (e) {
+      return defaultState();
+    }
+  }
+
+  function saveState() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    } catch (e) {
+      showToast('저장 중 오류가 발생했습니다.', 'danger');
+    }
+  }
+
+  // ---------- 유틸리티 ----------
+
+  function uid() {
+    return 'id_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 9);
+  }
+
+  function todayStr() {
+    const d = new Date();
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${y}-${m}-${day}`;
+  }
+
+  function getDest(id) {
+    return state.destinations.find((d) => d.id === id) || null;
+  }
+
+  function escapeHtml(str) {
+    if (str == null) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
+  // 여행지 아이콘(국기 코드 또는 이모지)을 HTML로 렌더링
+  function renderIcon(icon, extraClass) {
+    const cls = 'flag-icon' + (extraClass ? ' ' + extraClass : '');
+    if (icon && icon.indexOf('flag:') === 0) {
+      const code = icon.slice(5).toLowerCase();
+      return `<img class="${cls}" src="https://flagcdn.com/h40/${code}.png" srcset="https://flagcdn.com/h80/${code}.png 2x" alt="${code.toUpperCase()} flag" loading="lazy">`;
+    }
+    return escapeHtml(icon || '📍');
+  }
+
+  function nl2br(str) {
+    return escapeHtml(str).replace(/\n/g, '<br>');
+  }
+
+  function formatStampDate(dateStr) {
+    if (!dateStr) return { mon: '---', day: '--', year: '----' };
+    const parts = dateStr.split('-');
+    if (parts.length !== 3) return { mon: '---', day: '--', year: '----' };
+    const [y, m, d] = parts;
+    const mi = parseInt(m, 10) - 1;
+    return { mon: MONTHS[mi] || '---', day: d, year: y };
+  }
+
+  // ---------- 유튜브 파서 ----------
+
+  function parseYoutube(url) {
+    if (!url) return null;
+    const str = String(url).trim();
+    if (!str) return null;
+
+    try {
+      let m = str.match(/youtube\.com\/shorts\/([A-Za-z0-9_-]{6,})/);
+      if (m) return { type: 'short', id: m[1] };
+
+      m = str.match(/[?&]v=([A-Za-z0-9_-]{6,})/);
+      if (m) return { type: 'long', id: m[1] };
+
+      m = str.match(/youtu\.be\/([A-Za-z0-9_-]{6,})/);
+      if (m) return { type: 'long', id: m[1] };
+
+      m = str.match(/youtube\.com\/embed\/([A-Za-z0-9_-]{6,})/);
+      if (m) return { type: 'long', id: m[1] };
+
+      m = str.match(/youtube\.com\/live\/([A-Za-z0-9_-]{6,})/);
+      if (m) return { type: 'long', id: m[1] };
+
+      return null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function renderVideoEmbed(url) {
+    const parsed = parseYoutube(url);
+    if (!parsed) {
+      return `<div class="video-invalid">⚠️ 인식할 수 없는 유튜브 링크입니다: ${escapeHtml(url)}</div>`;
+    }
+    const src = `https://www.youtube.com/embed/${parsed.id}`;
+    if (parsed.type === 'short') {
+      return `
+        <div class="video-embed video-embed--short">
+          <span class="video-badge">SHORTS</span>
+          <iframe src="${src}" title="YouTube shorts player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen loading="lazy"></iframe>
+        </div>`;
+    }
+    return `
+      <div class="video-embed video-embed--long">
+        <span class="video-badge">VIDEO</span>
+        <iframe src="${src}" title="YouTube video player" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen loading="lazy"></iframe>
+      </div>`;
+  }
+
+  // ---------- 구글 지도 파서 ----------
+
+  function parseGoogleMaps(url) {
+    if (!url) return null;
+    const str = String(url).trim();
+    if (!str) return null;
+    if (!/google\.[a-z.]+\/maps|goo\.gl\/maps|maps\.app\.goo\.gl/i.test(str)) return null;
+
+    let placeName = null;
+    let lat = null;
+    let lng = null;
+    let routeFrom = null;
+    let routeTo = null;
+
+    try {
+      const u = new URL(str);
+      const path = u.pathname || '';
+
+      if (/\/maps\/dir\//i.test(path)) {
+        const routePartMatch = path.match(/\/maps\/dir\/(.*?)(?:\/data=|\/am=|$)/i);
+        const rawPart = routePartMatch ? routePartMatch[1] : '';
+        const routeParts = rawPart
+          .split('/')
+          .map((part) => decodeMapSegment(part))
+          .filter((part) => part && !part.startsWith('@'));
+        if (routeParts.length >= 2) {
+          routeFrom = routeParts[0];
+          routeTo = routeParts[routeParts.length - 1];
+        }
+      }
+
+      if (!routeFrom && !routeTo) {
+        routeFrom = u.searchParams.get('saddr') || u.searchParams.get('origin');
+        routeTo = u.searchParams.get('daddr') || u.searchParams.get('destination');
+      }
+
+      const q = u.searchParams.get('q') || u.searchParams.get('query');
+      if (q) placeName = decodeMapSegment(q);
+    } catch (e) {
+      /* ignore URL parse errors */
+    }
+
+    let m = str.match(/\/maps\/place\/([^/@]+)/);
+    if (m) placeName = decodeMapSegment(m[1]);
+
+    m = str.match(/@(-?\d+\.\d+),(-?\d+\.\d+)/);
+    if (m) {
+      lat = m[1];
+      lng = m[2];
+    } else {
+      m = str.match(/!3d(-?\d+\.\d+)!4d(-?\d+\.\d+)/);
+      if (m) {
+        lat = m[1];
+        lng = m[2];
+      }
+    }
+
+    if (routeFrom && routeTo) {
+      const embedSrc = `https://www.google.com/maps?output=embed&saddr=${encodeURIComponent(routeFrom)}&daddr=${encodeURIComponent(routeTo)}`;
+      return {
+        name: `${routeFrom} → ${routeTo}`,
+        embedSrc,
+        url: str,
+        type: 'route'
+      };
+    }
+
+    if (!placeName && !lat) {
+      return { name: null, embedSrc: null, url: str };
+    }
+
+    const query = lat && lng ? (placeName ? `${placeName}@${lat},${lng}` : `${lat},${lng}`) : placeName;
+
+    return {
+      name: placeName || `${lat}, ${lng}`,
+      embedSrc: `https://www.google.com/maps?q=${encodeURIComponent(query)}&z=16&output=embed`,
+      url: str,
+      type: 'place'
+    };
+  }
+
+  function decodeMapSegment(value) {
+    if (!value) return '';
+    try {
+      return decodeURIComponent(String(value).replace(/\+/g, ' ')).trim();
+    } catch (e) {
+      return String(value).replace(/\+/g, ' ').trim();
+    }
+  }
+
+  function buildLegacyItems(entry) {
+    const items = [];
+    if (entry && Array.isArray(entry.places)) {
+      entry.places.forEach((url) => {
+        if (url) items.push({ id: uid(), type: 'map', url: String(url) });
+      });
+    }
+    if (entry && Array.isArray(entry.videos)) {
+      entry.videos.forEach((url) => {
+        if (url) items.push({ id: uid(), type: 'video', url: String(url) });
+      });
+    }
+    return items;
+  }
+
+  function normalizeEntryMedia(entry) {
+    if (!entry) return;
+    if (!Array.isArray(entry.videos)) entry.videos = [];
+    if (!Array.isArray(entry.places)) entry.places = [];
+
+    if (Array.isArray(entry.items)) {
+      entry.items = entry.items
+        .map((item) => {
+          if (!item || !item.url) return null;
+          const type = item.type === 'video' ? 'video' : 'map';
+          return { id: item.id || uid(), type, url: String(item.url).trim() };
+        })
+        .filter((item) => item && item.url);
+    } else {
+      entry.items = buildLegacyItems(entry);
+    }
+
+    entry.videos = entry.items.filter((item) => item.type === 'video').map((item) => item.url);
+    entry.places = entry.items.filter((item) => item.type === 'map').map((item) => item.url);
+  }
+
+  function renderMediaItem(item) {
+    if (!item || !item.url) return '';
+    if (item.type === 'video') return renderVideoEmbed(item.url);
+    return renderMapEmbed(item.url);
+  }
+
+  function renderMapEmbed(url) {
+    const parsed = parseGoogleMaps(url);
+    if (!parsed) {
+      return `<div class="map-invalid">⚠️ 인식할 수 없는 구글 지도 링크입니다: ${escapeHtml(url)}</div>`;
+    }
+    if (!parsed.embedSrc) {
+      return `
+        <div class="map-embed">
+          <div class="map-embed__header">
+            <span class="map-embed__icon">📍</span>
+            <span class="map-embed__title">구글 지도 링크</span>
+            <a class="map-embed__link" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">Google 지도에서 보기 ↗</a>
+          </div>
+          <div class="map-embed__placeholder">
+            <span class="map-embed__placeholder-icon">🗺️</span>
+            <p>이 링크는 미리보기를 표시할 수 없어요.<br>버튼을 눌러 구글 지도에서 확인해보세요.</p>
+          </div>
+        </div>`;
+    }
+    return `
+      <div class="map-embed">
+        <div class="map-embed__header">
+          <span class="map-embed__icon">📍</span>
+          <span class="map-embed__title">${escapeHtml(parsed.name)}</span>
+          <a class="map-embed__link" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">Google 지도에서 보기 ↗</a>
+        </div>
+        <div class="map-embed__frame">
+          <iframe src="${parsed.embedSrc}" title="${escapeHtml(parsed.name)} 지도" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        </div>
+      </div>`;
+  }
+
+  // ---------- 렌더링 ----------
+
+  function renderAll() {
+    renderDestList();
+    renderMain();
+    renderStats();
+    saveState();
+  }
+
+  function renderStats() {
+    const statEl = document.getElementById('statTotal');
+    if (!statEl) return;
+    const destCount = state.destinations.length;
+    let entryCount = 0;
+    state.destinations.forEach((d) => (entryCount += d.entries.length));
+    statEl.textContent = `${destCount} DESTINATIONS · ${entryCount} LOGS`;
+  }
+
+  function renderDestList() {
+    const listEl = document.getElementById('destList');
+    if (!listEl) return;
+
+    if (state.destinations.length === 0) {
+      listEl.innerHTML = `
+        <div class="empty-list">
+          등록된 여행지가 없습니다.<br>
+          아래 버튼으로 첫 여행지를 추가해보세요.
+        </div>`;
+      return;
+    }
+
+    listEl.innerHTML = state.destinations
+      .map((d) => {
+        const activeClass = d.id === state.selectedId ? ' active' : '';
+        return `
+          <div class="dest-row${activeClass}" data-id="${d.id}" role="button" tabindex="0" draggable="true">
+            <span class="dest-icon dest-edit-target" title="아이콘/이름 수정">${renderIcon(d.icon)}</span>
+            <span class="dest-name dest-edit-target" title="아이콘/이름 수정">${escapeHtml(d.country)} - ${escapeHtml(d.city)}</span>
+            <span class="dest-status-dot"></span>
+            <div class="dest-row-actions">
+              <button class="btn-icon" data-action="edit-dest" data-id="${d.id}" title="수정" type="button">✎</button>
+              <button class="btn-icon" data-action="delete-dest" data-id="${d.id}" title="삭제" type="button">✕</button>
+            </div>
+          </div>`;
+      })
+      .join('');
+  }
+
+  function renderMain() {
+    const mainEl = document.getElementById('diaryMain');
+    if (!mainEl) return;
+
+    if (state.destinations.length === 0) {
+      mainEl.innerHTML = `
+        <div class="empty-state">
+          <div class="icon">🧳</div>
+          <h3>아직 여행지가 없어요</h3>
+          <p>왼쪽 "여행지 목록" 우측의 + 버튼을 눌러 첫 여행지를 추가해보세요.</p>
+        </div>`;
+      return;
+    }
+
+    let dest = getDest(state.selectedId);
+    if (!dest) {
+      dest = state.destinations[0];
+      state.selectedId = dest.id;
+    }
+
+    // 사용자가 지정한 순서를 그대로 유지합니다. 새 기록은 항상 최하단에 추가됩니다.
+    const entries = dest.entries;
+
+    let entriesHtml = '';
+    if (entries.length === 0) {
+      entriesHtml = `
+        <div class="empty-state">
+          <div class="icon">📔</div>
+          <h3>아직 기록이 없어요</h3>
+          <p>제목 우측의 "+ 새 기록" 버튼을 눌러 이 여행지에서의 첫 기록을 남겨보세요.</p>
+        </div>`;
+    } else {
+      entriesHtml = entries
+        .map((entry) => {
+          normalizeEntryMedia(entry);
+          let mediaHtml = '';
+          if (entry.items && entry.items.length) {
+            mediaHtml = `
+              <div class="entry-media-list">
+                ${entry.items.map((item) => renderMediaItem(item)).join('')}
+              </div>`;
+          }
+          const isCollapsed = entry.collapsed === true;
+          return `
+            <article class="entry-card${isCollapsed ? ' is-collapsed' : ''}" data-entry-id="${entry.id}">
+              <div class="entry-top">
+                <div class="entry-title-group">
+                  <div class="entry-title-line">
+                    <label class="entry-check" title="체크하면 기록이 접히고, 해제하면 펼쳐집니다">
+                      <input type="checkbox" data-action="toggle-entry-collapse" data-id="${entry.id}" ${isCollapsed ? 'checked' : ''} aria-label="${escapeHtml(entry.title)} 기록 접기/펼치기">
+                      <span class="entry-check-box" aria-hidden="true"></span>
+                    </label>
+                    <h3 class="entry-title">${escapeHtml(entry.title)}</h3>
+                  </div>
+                  <button class="entry-date-control entry-date-trigger" data-action="open-entry-date" data-id="${entry.id}" type="button" title="날짜 직접 선택" aria-label="${escapeHtml(entry.title)} 날짜 선택">
+                    <span class="entry-date-label">DATE</span>
+                    <span class="entry-date-value">${formatCuteDate(entry.date || todayStr())}</span>
+                    <span class="entry-date-emoji" aria-hidden="true">🗓️</span>
+                  </button>
+                </div>
+                <div class="entry-actions">
+                  <button class="btn-icon" data-action="edit-entry" data-id="${entry.id}" title="수정" type="button">✎</button>
+                  <button class="btn-icon" data-action="delete-entry" data-id="${entry.id}" title="삭제" type="button">✕</button>
+                </div>
+              </div>
+              <div class="entry-collapsible" ${isCollapsed ? 'hidden' : ''}>
+                ${entry.content ? `<p class="entry-content">${nl2br(entry.content)}</p>` : ''}
+                ${mediaHtml}
+              </div>
+            </article>`;
+        })
+        .join('');
+    }
+
+    mainEl.innerHTML = `
+      <div class="dest-header">
+        <div class="dest-header-title">
+          <span class="dest-header-icon">${renderIcon(dest.icon, 'flag-icon--lg')}</span>
+          <div class="dest-header-text">
+            <h2>${escapeHtml(dest.country)} - ${escapeHtml(dest.city)}</h2>
+          </div>
+        </div>
+        <div class="dest-header-actions">
+          <button class="btn btn-ghost btn-small btn-order-inline" id="orderEntryBtn" type="button">순서 변경</button>
+          <button class="btn btn-primary btn-small btn-add-entry-inline" id="addEntryBtn" type="button">+ 새 기록</button>
+          <button class="btn-icon" data-action="edit-dest" data-id="${dest.id}" title="여행지 수정" type="button">✎</button>
+          <button class="btn-icon" data-action="delete-dest" data-id="${dest.id}" title="여행지 삭제" type="button">✕</button>
+        </div>
+      </div>
+      <div class="entries-list">
+        ${entriesHtml}
+      </div>
+    `;
+
+    observeEntryCards();
+  }
+
+  function observeEntryCards() {
+    if (cardObserver) cardObserver.disconnect();
+    const cards = document.querySelectorAll('.entry-card');
+    if (!cards.length) return;
+
+    if (!('IntersectionObserver' in window)) {
+      cards.forEach((c) => c.classList.add('revealed'));
+      return;
+    }
+
+    cardObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    cards.forEach((c) => cardObserver.observe(c));
+  }
+
+  // ---------- 모달 헬퍼 ----------
+
+  function openModal(id) {
+    const el = document.getElementById(id);
+    if (el) el.classList.add('open');
+  }
+
+  function closeModal(id) {
+    const el = document.getElementById(id);
+    if (el) el.classList.remove('open');
+  }
+
+  function closeAllModals() {
+    document.querySelectorAll('.modal-overlay.open').forEach((el) => el.classList.remove('open'));
+  }
+
+  // ---------- 토스트 ----------
+
+  let toastTimer = null;
+  function showToast(message, type) {
+    const toast = document.getElementById('toast');
+    if (!toast) return;
+    toast.textContent = message;
+    toast.className = 'toast';
+    if (type === 'danger') toast.classList.add('danger');
+    toast.classList.add('show');
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {
+      toast.classList.remove('show');
+    }, 2600);
+  }
+
+  // ---------- 아이콘 선택기 ----------
+
+  function buildIconGrid(gridId, list) {
+    const grid = document.getElementById(gridId);
+    if (!grid) return;
+    grid.innerHTML = list
+      .map((icon) => `<button class="icon-cell" data-icon="${escapeHtml(icon)}" type="button">${icon}</button>`)
+      .join('');
+  }
+
+  function buildFlagGrid(gridId, codes) {
+    const grid = document.getElementById(gridId);
+    if (!grid) return;
+    grid.innerHTML = codes
+      .map((code) => `<button class="icon-cell" data-icon="flag:${code}" type="button" title="${code.toUpperCase()}">${renderIcon('flag:' + code)}</button>`)
+      .join('');
+  }
+
+  function getCountryNameFromIcon(icon) {
+    if (!icon || typeof icon !== 'string' || !icon.startsWith('flag:')) return '';
+    const code = icon.slice(5).toLowerCase();
+    return FLAG_CODE_TO_COUNTRY[code] || '';
+  }
+
+  function applyAutoCountryFromIcon(icon) {
+    const countryInput = document.getElementById('destCountryInput');
+    if (!countryInput) return;
+    const countryName = getCountryNameFromIcon(icon);
+    if (countryName) countryInput.value = countryName;
+  }
+
+  function openIconPicker(callback, currentIcon) {
+    iconTargetCallback = callback;
+    const customInput = document.getElementById('customIconInput');
+    if (customInput) customInput.value = currentIcon || '';
+    openModal('iconModalOverlay');
+  }
+
+  // ---------- 여행지 모달 ----------
+
+  function openDestModal(editId) {
+    const titleEl = document.getElementById('destModalTitle');
+    const countryInput = document.getElementById('destCountryInput');
+    const cityInput = document.getElementById('destCityInput');
+    const iconBtn = document.getElementById('destIconBtn');
+
+    if (editId) {
+      const dest = getDest(editId);
+      if (!dest) return;
+      currentDestEditId = editId;
+      titleEl.textContent = '여행지 수정';
+      countryInput.value = dest.country;
+      cityInput.value = dest.city;
+      iconBtn.dataset.icon = dest.icon || '📍';
+      iconBtn.innerHTML = renderIcon(iconBtn.dataset.icon);
+    } else {
+      currentDestEditId = null;
+      titleEl.textContent = '여행지 추가';
+      countryInput.value = '';
+      cityInput.value = '';
+      iconBtn.dataset.icon = '📍';
+      iconBtn.innerHTML = renderIcon('📍');
+    }
+
+    openModal('destModalOverlay');
+    setTimeout(() => countryInput.focus(), 50);
+  }
+
+  function saveDest() {
+    const countryInput = document.getElementById('destCountryInput');
+    const cityInput = document.getElementById('destCityInput');
+    const iconBtn = document.getElementById('destIconBtn');
+
+    const country = countryInput.value.trim();
+    const city = cityInput.value.trim();
+    const icon = iconBtn.dataset.icon || '📍';
+
+    if (!country || !city) {
+      showToast('국가와 도시를 모두 입력해주세요.', 'danger');
+      return;
+    }
+
+    if (currentDestEditId) {
+      const dest = getDest(currentDestEditId);
+      if (dest) {
+        dest.country = country;
+        dest.city = city;
+        dest.icon = icon;
+        showToast('여행지를 수정했습니다.', 'success');
+      }
+    } else {
+      const newDest = { id: uid(), icon, country, city, entries: [] };
+      state.destinations.push(newDest);
+      state.selectedId = newDest.id;
+      showToast('새 여행지를 추가했습니다.', 'success');
+    }
+
+    currentDestEditId = null;
+    closeModal('destModalOverlay');
+    renderAll();
+  }
+
+  // ---------- 기록(엔트리) 모달 ----------
+
+  function openEntryModal(destId, entryId) {
+    const titleEl = document.getElementById('entryModalTitle');
+    const titleInput = document.getElementById('entryTitleInput');
+    const dateInput = document.getElementById('entryDateInput');
+    const contentInput = document.getElementById('entryContentInput');
+    const mediaList = document.getElementById('mediaOrderContainer');
+
+    mediaList.innerHTML = '';
+    titleInput.dataset.autofilled = '';
+    titleInput.dataset.autofillValue = '';
+    titleAutoFillSource = null;
+    currentEntryDestId = destId;
+
+    if (entryId) {
+      const dest = getDest(destId);
+      const entry = dest ? dest.entries.find((e) => e.id === entryId) : null;
+      if (!entry) return;
+      currentEntryEditId = entryId;
+      titleEl.textContent = '기록 수정';
+      titleInput.value = entry.title;
+      dateInput.value = entry.date || todayStr();
+      updateModalDateDisplay(dateInput.value);
+      contentInput.value = entry.content || '';
+
+      normalizeEntryMedia(entry);
+      if (entry.items && entry.items.length) {
+        entry.items.forEach((item) => addMediaLinkRow(item.type, item.url));
+      }
+    } else {
+      currentEntryEditId = null;
+      titleEl.textContent = '기록 추가';
+      titleInput.value = '';
+      dateInput.value = todayStr();
+      updateModalDateDisplay(dateInput.value);
+      contentInput.value = '';
+      // 콘텐츠는 필요할 때 버튼으로 추가하면 자동으로 최하단에 들어갑니다.
+    }
+
+    openModal('entryModalOverlay');
+    setTimeout(() => titleInput.focus(), 50);
+  }
+
+  function inferMediaType(url) {
+    const value = String(url || '').trim();
+    if (!value) return 'link';
+    if (parseYoutube(value)) return 'video';
+    if (parseGoogleMaps(value)) return 'map';
+    return 'link';
+  }
+
+  function mediaTypeLabel(type) {
+    if (type === 'video') return '유튜브';
+    if (type === 'map') return '구글맵';
+    return '링크';
+  }
+
+  function mediaTypePlaceholder() {
+    return '구글맵 또는 유튜브 URL을 붙여넣어 주세요';
+  }
+
+  function updateMediaRowType(row) {
+    if (!row) return;
+    const input = row.querySelector('.media-link-input');
+    const badge = row.querySelector('.media-type-badge');
+    const type = inferMediaType(input ? input.value : '');
+    row.dataset.type = type;
+    if (badge) badge.textContent = mediaTypeLabel(type);
+  }
+
+  function addMediaLinkRow(type, value) {
+    const mediaList = document.getElementById('mediaOrderContainer');
+    if (!mediaList) return null;
+    const row = document.createElement('div');
+    row.className = 'media-order-row';
+    row.dataset.type = type === 'video' || type === 'map' ? type : inferMediaType(value);
+    row.innerHTML = `
+      <span class="media-type-badge">${mediaTypeLabel(row.dataset.type)}</span>
+      <input type="text" class="media-link-input" placeholder="${mediaTypePlaceholder()}" autocomplete="off">
+      <div class="media-order-buttons">
+        <button class="btn-icon" data-action="remove-media-row" type="button" title="삭제">✕</button>
+      </div>
+    `;
+    const input = row.querySelector('.media-link-input');
+    input.value = value || '';
+    mediaList.appendChild(row);
+    bindMediaTitleAutoFill(input);
+    updateMediaRowType(row);
+    setTimeout(() => { input.focus(); input.select(); }, 30);
+    return row;
+  }
+
+  function addLinkRow(value) {
+    return addMediaLinkRow('link', value);
+  }
+
+  function addVideoLinkRow(value) {
+    return addMediaLinkRow('video', value);
+  }
+
+  function addPlaceLinkRow(value) {
+    return addMediaLinkRow('map', value);
+  }
+
+  function saveEntry() {
+    const titleInput = document.getElementById('entryTitleInput');
+    const dateInput = document.getElementById('entryDateInput');
+    const contentInput = document.getElementById('entryContentInput');
+    const mediaList = document.getElementById('mediaOrderContainer');
+
+    const title = titleInput.value.trim() || '제목 없음';
+    const date = dateInput.value || todayStr();
+    const content = contentInput.value.trim();
+
+    const items = Array.from(mediaList.querySelectorAll('.media-order-row'))
+      .map((row) => {
+        const input = row.querySelector('.media-link-input');
+        const url = input ? input.value.trim() : '';
+        const inferred = inferMediaType(url);
+        const type = inferred === 'video' ? 'video' : 'map';
+        return url ? { id: uid(), type, url } : null;
+      })
+      .filter(Boolean);
+
+    const videos = items.filter((item) => item.type === 'video').map((item) => item.url);
+    const places = items.filter((item) => item.type === 'map').map((item) => item.url);
+
+    const dest = getDest(currentEntryDestId);
+    if (!dest) return;
+
+    if (currentEntryEditId) {
+      const entry = dest.entries.find((e) => e.id === currentEntryEditId);
+      if (entry) {
+        entry.title = title;
+        entry.date = date;
+        entry.content = content;
+        entry.items = items;
+        entry.videos = videos;
+        entry.places = places;
+        if (typeof entry.collapsed !== 'boolean') entry.collapsed = false;
+        showToast('기록을 수정했습니다.', 'success');
+      }
+    } else {
+      dest.entries.push({ id: uid(), title, date, content, items, videos, places, collapsed: false });
+      showToast('새 기록을 추가했습니다.', 'success');
+    }
+
+    currentEntryEditId = null;
+    currentEntryDestId = null;
+    closeModal('entryModalOverlay');
+    renderAll();
+  }
+
+  function toggleEntryCollapse(destId, entryId, collapsed) {
+    const dest = getDest(destId);
+    if (!dest) return;
+    const entry = dest.entries.find((e) => e.id === entryId);
+    if (!entry) return;
+    entry.collapsed = !!collapsed;
+    renderAll();
+  }
+
+  function changeEntryDate(destId, entryId, date) {
+    const dest = getDest(destId);
+    if (!dest) return;
+    const entry = dest.entries.find((e) => e.id === entryId);
+    if (!entry) return;
+    entry.date = date || todayStr();
+    renderAll();
+  }
+
+  // ---------- 다이어리 순서 변경 ----------
+
+  function openOrderModal(destId) {
+    const dest = getDest(destId);
+    if (!dest) return;
+    currentOrderDestId = destId;
+    renderOrderList(dest);
+    openModal('orderModalOverlay');
+  }
+
+  function renderOrderList(dest) {
+    const list = document.getElementById('orderList');
+    if (!list) return;
+    const entries = Array.isArray(dest.entries) ? dest.entries : [];
+    const max = entries.length;
+    if (!max) {
+      list.innerHTML = `
+        <div class="order-empty">
+          아직 등록된 다이어리가 없습니다.<br>
+          먼저 새 기록을 추가해 주세요.
+        </div>`;
+      return;
+    }
+    list.innerHTML = entries.map((entry, index) => `
+      <div class="order-row" data-id="${entry.id}">
+        <div class="order-title" title="${escapeHtml(entry.title || '제목 없음')}">${escapeHtml(entry.title || '제목 없음')}</div>
+        <label class="order-number-wrap">
+          <span>순서</span>
+          <input type="number" class="order-number-input" min="1" max="${max}" value="${index + 1}" data-prev="${index + 1}" inputmode="numeric" aria-label="${escapeHtml(entry.title || '제목 없음')} 순서">
+        </label>
+      </div>`).join('');
+  }
+
+  function refreshOrderInputNumbers(list) {
+    if (!list) return;
+    const rows = Array.from(list.querySelectorAll('.order-row'));
+    rows.forEach((row, index) => {
+      const input = row.querySelector('.order-number-input');
+      if (!input) return;
+      const value = String(index + 1);
+      input.value = value;
+      input.dataset.prev = value;
+      input.defaultValue = value;
+    });
+  }
+
+  function validateOrderInput(input) {
+    const list = input ? input.closest('#orderList') : null;
+    if (!input || !list) return;
+    const rows = Array.from(list.querySelectorAll('.order-row'));
+    const max = rows.length;
+    const raw = String(input.value || '').trim();
+    if (!raw) return;
+    const val = Number(raw);
+    const currentRow = input.closest('.order-row');
+    const currentIndex = rows.indexOf(currentRow);
+
+    if (!Number.isInteger(val) || val < 1) {
+      input.value = String(currentIndex + 1);
+      showToast('순서는 1부터 입력할 수 있습니다.', 'danger');
+      return;
+    }
+    if (val > max) {
+      input.value = String(currentIndex + 1);
+      showToast('해당 개수만큼의 다이어리가 없습니다.', 'danger');
+      return;
+    }
+
+    const targetIndex = val - 1;
+    if (!currentRow || targetIndex === currentIndex) {
+      refreshOrderInputNumbers(list);
+      return;
+    }
+
+    currentRow.classList.add('is-moving');
+    if (targetIndex >= rows.length - 1) {
+      list.appendChild(currentRow);
+    } else if (targetIndex > currentIndex) {
+      list.insertBefore(currentRow, rows[targetIndex + 1]);
+    } else {
+      list.insertBefore(currentRow, rows[targetIndex]);
+    }
+    refreshOrderInputNumbers(list);
+    setTimeout(() => currentRow.classList.remove('is-moving'), 260);
+  }
+
+  function saveEntryOrder() {
+    const dest = getDest(currentOrderDestId);
+    const list = document.getElementById('orderList');
+    if (!dest || !list) return;
+    const rows = Array.from(list.querySelectorAll('.order-row'));
+    if (!rows.length) {
+      closeModal('orderModalOverlay');
+      return;
+    }
+    const max = rows.length;
+    const orderedEntries = [];
+
+    for (const row of rows) {
+      const entry = dest.entries.find((e) => e.id === row.dataset.id);
+      if (entry) orderedEntries.push(entry);
+    }
+
+    if (orderedEntries.length !== dest.entries.length) {
+      showToast('순서 변경 중 오류가 발생했습니다.', 'danger');
+      return;
+    }
+
+    dest.entries = orderedEntries;
+    currentOrderDestId = null;
+    closeModal('orderModalOverlay');
+    showToast('다이어리 순서를 저장했습니다.', 'success');
+    renderAll();
+  }
+
+  // ---------- 링크 제목 자동 입력 ----------
+
+  function bindMediaTitleAutoFill(input) {
+    if (!input) return;
+    input.addEventListener('input', () => {
+      const row = input.closest('.media-order-row');
+      updateMediaRowType(row);
+      handleMediaUrlCleared(input);
+      scheduleMediaTitleAutoFill(input);
+    });
+    input.addEventListener('change', () => {
+      const row = input.closest('.media-order-row');
+      updateMediaRowType(row);
+      handleMediaUrlCleared(input);
+      scheduleMediaTitleAutoFill(input, true);
+    });
+    input.addEventListener('blur', () => scheduleMediaTitleAutoFill(input, true));
+  }
+
+  function scheduleMediaTitleAutoFill(input, immediate) {
+    if (titleAutoFillTimer) clearTimeout(titleAutoFillTimer);
+    titleAutoFillTimer = setTimeout(() => maybeAutofillTitleFromMedia(input), immediate ? 80 : 650);
+  }
+
+  function clearAutoFilledTitle() {
+    const titleInput = document.getElementById('entryTitleInput');
+    if (!titleInput) return;
+    if (titleInput.dataset.autofilled === 'true') {
+      titleInput.value = '';
+      titleInput.dataset.autofilled = '';
+      titleInput.dataset.autofillValue = '';
+      titleAutoFillSource = null;
+    }
+  }
+
+  function handleMediaUrlCleared(input) {
+    if (!input) return;
+    if (String(input.value || '').trim()) return;
+    clearAutoFilledTitle();
+  }
+
+  async function maybeAutofillTitleFromMedia(input) {
+    if (!input) return;
+    const url = String(input.value || '').trim();
+    if (!url) {
+      handleMediaUrlCleared(input);
+      return;
+    }
+
+    const titleInput = document.getElementById('entryTitleInput');
+    if (!titleInput) return;
+    const currentTitle = titleInput.value.trim();
+    if (currentTitle && titleInput.dataset.autofilled !== 'true') return;
+
+    const row = input.closest('.media-order-row');
+    const type = inferMediaType(url);
+    if (row) {
+      row.dataset.type = type;
+      const badge = row.querySelector('.media-type-badge');
+      if (badge) badge.textContent = mediaTypeLabel(type);
+    }
+
+    let title = '';
+    if (type === 'map') {
+      const parsed = parseGoogleMaps(url);
+      if (parsed && parsed.name) title = parsed.name;
+    } else if (type === 'video') {
+      title = await fetchYoutubeTitle(url);
+    }
+
+    if (title) {
+      titleInput.value = title;
+      titleInput.dataset.autofilled = 'true';
+      titleInput.dataset.autofillValue = title;
+      titleAutoFillSource = input;
+      titleInput.classList.add('auto-filled');
+      setTimeout(() => titleInput.classList.remove('auto-filled'), 900);
+    }
+  }
+
+  async function fetchYoutubeTitle(url) {
+    const parsed = parseYoutube(url);
+    if (!parsed) return '';
+    const canonicalUrl = `https://www.youtube.com/watch?v=${parsed.id}`;
+    try {
+      const response = await fetch(`https://www.youtube.com/oembed?format=json&url=${encodeURIComponent(canonicalUrl)}`);
+      if (response.ok) {
+        const data = await response.json();
+        if (data && data.title) return String(data.title).trim();
+      }
+    } catch (e) {
+      /* 브라우저/CORS 환경에 따라 실패할 수 있어 ID 기반 제목으로 대체합니다. */
+    }
+    return parsed.type === 'short' ? `YouTube Shorts ${parsed.id}` : `YouTube 영상 ${parsed.id}`;
+  }
+
+  function moveEntry(destId, entryId, direction) {
+    const dest = getDest(destId);
+    if (!dest || !Array.isArray(dest.entries)) return;
+    const idx = dest.entries.findIndex((e) => e.id === entryId);
+    if (idx < 0) return;
+    const nextIdx = direction === 'up' ? idx - 1 : idx + 1;
+    if (nextIdx < 0 || nextIdx >= dest.entries.length) return;
+    const [entry] = dest.entries.splice(idx, 1);
+    dest.entries.splice(nextIdx, 0, entry);
+    renderAll();
+  }
+
+  // ---------- 귀여운 날짜 선택기 ----------
+
+  function formatCuteDate(value) {
+    const d = parseDateValue(value);
+    if (!d) return '날짜 선택';
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${y}.${m}.${day}`;
+  }
+
+  function formatCuteDateLong(value) {
+    const d = parseDateValue(value);
+    if (!d) return '날짜 선택';
+    const days = ['일', '월', '화', '수', '목', '금', '토'];
+    return `${d.getFullYear()}년 ${d.getMonth() + 1}월 ${d.getDate()}일 (${days[d.getDay()]})`;
+  }
+
+  function parseDateValue(value) {
+    if (!value) return null;
+    const parts = String(value).split('-').map(Number);
+    if (parts.length !== 3 || parts.some((n) => !Number.isFinite(n))) return null;
+    return new Date(parts[0], parts[1] - 1, parts[2]);
+  }
+
+  function dateToValue(date) {
+    const y = date.getFullYear();
+    const m = String(date.getMonth() + 1).padStart(2, '0');
+    const d = String(date.getDate()).padStart(2, '0');
+    return `${y}-${m}-${d}`;
+  }
+
+  function updateModalDateDisplay(value) {
+    const display = document.getElementById('entryDateDisplay');
+    if (display) display.textContent = formatCuteDateLong(value || todayStr());
+  }
+
+  function openCuteCalendar(anchor, value, onSelect) {
+    const popover = document.getElementById('cuteCalendarPopover');
+    if (!popover || !anchor) return;
+    if (!popover.hidden && cuteCalendarContext && cuteCalendarContext.anchor === anchor) {
+      closeCuteCalendar();
+      return;
+    }
+    const selected = parseDateValue(value) || new Date();
+    cuteCalendarContext = { anchor, selectedValue: dateToValue(selected), onSelect };
+    cuteCalendarViewDate = new Date(selected.getFullYear(), selected.getMonth(), 1);
+    renderCuteCalendar();
+    popover.hidden = false;
+    positionCuteCalendar(anchor);
+  }
+
+  function closeCuteCalendar() {
+    const popover = document.getElementById('cuteCalendarPopover');
+    if (popover) popover.hidden = true;
+    cuteCalendarContext = null;
+  }
+
+  function positionCuteCalendar(anchor) {
+    const popover = document.getElementById('cuteCalendarPopover');
+    if (!popover || popover.hidden) return;
+    const rect = anchor.getBoundingClientRect();
+    const width = Math.min(320, window.innerWidth - 24);
+    let left = rect.left + rect.width / 2 - width / 2;
+    left = Math.max(12, Math.min(left, window.innerWidth - width - 12));
+    let top = rect.bottom + 10;
+    if (top + 360 > window.innerHeight) top = Math.max(12, rect.top - 352);
+    popover.style.width = `${width}px`;
+    popover.style.left = `${left}px`;
+    popover.style.top = `${top}px`;
+  }
+
+  function renderCuteCalendar() {
+    const popover = document.getElementById('cuteCalendarPopover');
+    if (!popover || !cuteCalendarViewDate || !cuteCalendarContext) return;
+    const year = cuteCalendarViewDate.getFullYear();
+    const month = cuteCalendarViewDate.getMonth();
+    const first = new Date(year, month, 1);
+    const start = new Date(year, month, 1 - first.getDay());
+    const today = dateToValue(new Date());
+    const selected = cuteCalendarContext.selectedValue;
+    const days = [];
+    for (let i = 0; i < 42; i += 1) {
+      const d = new Date(start);
+      d.setDate(start.getDate() + i);
+      const value = dateToValue(d);
+      const muted = d.getMonth() !== month ? ' is-muted' : '';
+      const sel = value === selected ? ' is-selected' : '';
+      const now = value === today ? ' is-today' : '';
+      days.push(`<button type="button" class="cute-calendar-day${muted}${sel}${now}" data-date="${value}">${d.getDate()}</button>`);
+    }
+    popover.innerHTML = `
+      <div class="cute-calendar-head">
+        <button type="button" class="cute-calendar-nav" data-calendar-action="prev" aria-label="이전 달">‹</button>
+        <div class="cute-calendar-title"><span>🐻</span><strong>${year}년 ${month + 1}월</strong></div>
+        <button type="button" class="cute-calendar-nav" data-calendar-action="next" aria-label="다음 달">›</button>
+      </div>
+      <div class="cute-calendar-weekdays"><span>일</span><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span></div>
+      <div class="cute-calendar-grid">${days.join('')}</div>
+      <div class="cute-calendar-foot">
+        <button type="button" class="cute-calendar-today" data-calendar-action="today">오늘</button>
+      </div>
+    `;
+  }
+
+  function selectCuteDate(value) {
+    if (!cuteCalendarContext || !value) return;
+    cuteCalendarContext.selectedValue = value;
+    if (typeof cuteCalendarContext.onSelect === 'function') cuteCalendarContext.onSelect(value);
+    closeCuteCalendar();
+  }
+
+  // ---------- 삭제 확인 ----------
+
+  function showConfirm(message, callback) {
+    const msgEl = document.getElementById('confirmMessage');
+    if (msgEl) msgEl.textContent = message;
+    confirmCallback = callback;
+    openModal('confirmOverlay');
+    setTimeout(() => {
+      const okBtn = document.getElementById('confirmOkBtn');
+      if (okBtn) okBtn.focus();
+    }, 40);
+  }
+
+  function confirmDeleteDest(destId) {
+    const dest = getDest(destId);
+    if (!dest) return;
+    showConfirm(`"${dest.country} - ${dest.city}"\n여행지와 모든 기록을 삭제하시겠습니까?`, () => {
+      state.destinations = state.destinations.filter((d) => d.id !== destId);
+      if (state.selectedId === destId) {
+        state.selectedId = state.destinations.length ? state.destinations[0].id : null;
+      }
+      showToast('여행지를 삭제했습니다.', 'success');
+      renderAll();
+    });
+  }
+
+  function confirmDeleteEntry(destId, entryId) {
+    const dest = getDest(destId);
+    if (!dest) return;
+    const entry = dest.entries.find((e) => e.id === entryId);
+    if (!entry) return;
+    showConfirm(`"${entry.title}"\n기록을 삭제하시겠습니까?`, () => {
+      dest.entries = dest.entries.filter((e) => e.id !== entryId);
+      showToast('기록을 삭제했습니다.', 'success');
+      renderAll();
+    });
+  }
+
+  // ---------- 내보내기 / 가져오기 ----------
+
+  function exportData() {
+    try {
+      const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `travel-diary-${todayStr()}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast('백업 파일을 다운로드했습니다.', 'success');
+    } catch (e) {
+      showToast('내보내기 중 오류가 발생했습니다.', 'danger');
+    }
+  }
+
+  function importData(file) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      try {
+        const parsed = JSON.parse(e.target.result);
+        if (!parsed || !Array.isArray(parsed.destinations)) throw new Error('invalid');
+        parsed.destinations.forEach((d) => {
+          if (!Array.isArray(d.entries)) d.entries = [];
+          if (!d.icon) d.icon = '📍';
+          if (EMOJI_FLAG_TO_CODE[d.icon]) d.icon = 'flag:' + EMOJI_FLAG_TO_CODE[d.icon];
+          d.entries.forEach((entry) => {
+            normalizeEntryMedia(entry);
+            if (typeof entry.collapsed !== 'boolean') entry.collapsed = false;
+          });
+        });
+        state = parsed;
+        if (!state.selectedId && state.destinations.length) {
+          state.selectedId = state.destinations[0].id;
+        }
+        renderAll();
+        showToast('데이터를 가져왔습니다.', 'success');
+      } catch (err) {
+        showToast('올바르지 않은 백업 파일입니다.', 'danger');
+      }
+    };
+    reader.readAsText(file);
+  }
+
+  // ---------- 라이트/다크 테마 ----------
+
+  const THEME_KEY = 'travelDiaryTheme';
+
+  function initTheme() {
+    let saved = null;
+    try {
+      saved = localStorage.getItem(THEME_KEY);
+    } catch (e) {
+      saved = null;
+    }
+    const theme = saved === 'dark' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', theme);
+  }
+
+  function toggleTheme() {
+    const current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+    const next = current === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    try {
+      localStorage.setItem(THEME_KEY, next);
+    } catch (e) {
+      /* ignore */
+    }
+  }
+
+  // ---------- 홈으로 이동 ----------
+
+  function goHome() {
+    if (state.destinations.length) {
+      state.selectedId = state.destinations[0].id;
+      renderAll();
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ---------- 실시간 시계 ----------
+
+  function updateClock() {
+    const clockEl = document.getElementById('clock');
+    if (!clockEl) return;
+    const now = new Date();
+    const hh = String(now.getHours()).padStart(2, '0');
+    const mm = String(now.getMinutes()).padStart(2, '0');
+    const ss = String(now.getSeconds()).padStart(2, '0');
+    clockEl.textContent = `${hh}:${mm}:${ss}`;
+  }
+
+  // ---------- 스플릿 플랩 타이틀 ----------
+
+  function initFlapTitle() {
+    const titleEl = document.getElementById('flapTitle');
+    if (!titleEl) return;
+    const text = 'TRAVEL LOG';
+    titleEl.innerHTML = '';
+    text.split('').forEach((ch, i) => {
+      const span = document.createElement('span');
+      span.className = 'flap-char' + (ch === ' ' ? ' space' : '');
+      span.textContent = ch === ' ' ? '\u00A0' : ch;
+      span.style.animationDelay = `${i * 0.06}s`;
+      titleEl.appendChild(span);
+    });
+  }
+
+
+  // ---------- 여행지 목록 드래그 순서 변경 ----------
+
+  function getDestDragAfterElement(container, y) {
+    const rows = [...container.querySelectorAll('.dest-row:not(.dragging)')];
+    return rows.reduce((closest, child) => {
+      const box = child.getBoundingClientRect();
+      const offset = y - box.top - box.height / 2;
+      if (offset < 0 && offset > closest.offset) {
+        return { offset, element: child };
+      }
+      return closest;
+    }, { offset: Number.NEGATIVE_INFINITY, element: null }).element;
+  }
+
+  function saveDestOrderFromList(listEl) {
+    if (!listEl) return;
+    const ids = Array.from(listEl.querySelectorAll('.dest-row')).map((row) => row.dataset.id).filter(Boolean);
+    if (ids.length !== state.destinations.length) return;
+    const next = [];
+    ids.forEach((id) => {
+      const dest = getDest(id);
+      if (dest) next.push(dest);
+    });
+    if (next.length !== state.destinations.length) return;
+    state.destinations = next;
+    if (!getDest(state.selectedId) && state.destinations[0]) state.selectedId = state.destinations[0].id;
+    saveState();
+    renderDestList();
+  }
+
+  // ---------- 이벤트 바인딩 ----------
+
+  function bindEvents() {
+    const addDestBtn = document.getElementById('addDestBtn');
+    if (addDestBtn) addDestBtn.addEventListener('click', () => openDestModal(null));
+
+    const themeToggle = document.getElementById('themeToggle');
+    if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
+
+    const homeBtn = document.getElementById('homeBtn');
+    if (homeBtn) homeBtn.addEventListener('click', goHome);
+
+    const destSaveBtn = document.getElementById('destSaveBtn');
+    if (destSaveBtn) destSaveBtn.addEventListener('click', saveDest);
+    const destCancelBtn = document.getElementById('destCancelBtn');
+    if (destCancelBtn) destCancelBtn.addEventListener('click', () => closeModal('destModalOverlay'));
+
+    const destIconBtn = document.getElementById('destIconBtn');
+    if (destIconBtn) {
+      destIconBtn.addEventListener('click', () => {
+        openIconPicker((icon) => {
+          destIconBtn.dataset.icon = icon;
+          destIconBtn.innerHTML = renderIcon(icon);
+          applyAutoCountryFromIcon(icon);
+        }, destIconBtn.dataset.icon);
+      });
+    }
+
+    const flagGrid = document.getElementById('flagGrid');
+    const iconGrid = document.getElementById('iconGrid');
+    [flagGrid, iconGrid].forEach((grid) => {
+      if (!grid) return;
+      grid.addEventListener('click', (e) => {
+        const cell = e.target.closest('.icon-cell');
+        if (!cell) return;
+        const icon = cell.dataset.icon;
+        if (iconTargetCallback) iconTargetCallback(icon);
+        closeModal('iconModalOverlay');
+      });
+    });
+
+    const customIconApplyBtn = document.getElementById('customIconApplyBtn');
+    if (customIconApplyBtn) {
+      customIconApplyBtn.addEventListener('click', () => {
+        const input = document.getElementById('customIconInput');
+        const val = (input.value || '').trim();
+        if (!val) {
+          showToast('아이콘을 입력해주세요.', 'danger');
+          return;
+        }
+        if (iconTargetCallback) iconTargetCallback(val);
+        closeModal('iconModalOverlay');
+      });
+    }
+
+    const entrySaveBtn = document.getElementById('entrySaveBtn');
+    if (entrySaveBtn) entrySaveBtn.addEventListener('click', saveEntry);
+    const entryCancelBtn = document.getElementById('entryCancelBtn');
+    if (entryCancelBtn) entryCancelBtn.addEventListener('click', () => closeModal('entryModalOverlay'));
+
+    const orderSaveBtn = document.getElementById('orderSaveBtn');
+    if (orderSaveBtn) orderSaveBtn.addEventListener('click', saveEntryOrder);
+    const orderCancelBtn = document.getElementById('orderCancelBtn');
+    if (orderCancelBtn) orderCancelBtn.addEventListener('click', () => { currentOrderDestId = null; closeModal('orderModalOverlay'); });
+    const orderList = document.getElementById('orderList');
+    if (orderList) {
+      orderList.addEventListener('input', (e) => {
+        const input = e.target.closest('.order-number-input');
+        if (input) validateOrderInput(input);
+      });
+      orderList.addEventListener('focusin', (e) => {
+        const input = e.target.closest('.order-number-input');
+        if (input) input.select();
+      });
+    }
+
+    const addLinkBtn = document.getElementById('addLinkBtn');
+    if (addLinkBtn) addLinkBtn.addEventListener('click', () => {
+      const row = addLinkRow('');
+      const input = row ? row.querySelector('.media-link-input') : null;
+      if (input) setTimeout(() => { input.focus(); input.select(); }, 30);
+    });
+
+    const entryTitleInput = document.getElementById('entryTitleInput');
+    if (entryTitleInput) {
+      entryTitleInput.addEventListener('input', () => {
+        entryTitleInput.dataset.autofilled = '';
+        entryTitleInput.dataset.autofillValue = '';
+        titleAutoFillSource = null;
+      });
+    }
+
+    const entryDateButton = document.getElementById('entryDateButton');
+    if (entryDateButton) {
+      entryDateButton.addEventListener('click', () => {
+        const dateInput = document.getElementById('entryDateInput');
+        openCuteCalendar(entryDateButton, dateInput ? dateInput.value : todayStr(), (value) => {
+          if (dateInput) dateInput.value = value;
+          updateModalDateDisplay(value);
+        });
+      });
+    }
+
+    const mediaOrderContainer = document.getElementById('mediaOrderContainer');
+    if (mediaOrderContainer) {
+      mediaOrderContainer.addEventListener('click', (e) => {
+        const row = e.target.closest('.media-order-row');
+        if (!row) return;
+        if (e.target.closest('[data-action="remove-media-row"]')) {
+          clearAutoFilledTitle();
+          row.remove();
+          return;
+        }
+
+      });
+    }
+
+    const confirmOkBtn = document.getElementById('confirmOkBtn');
+    if (confirmOkBtn) {
+      confirmOkBtn.addEventListener('click', () => {
+        if (confirmCallback) confirmCallback();
+        confirmCallback = null;
+        closeModal('confirmOverlay');
+      });
+    }
+    const confirmCancelBtn = document.getElementById('confirmCancelBtn');
+    if (confirmCancelBtn) {
+      confirmCancelBtn.addEventListener('click', () => {
+        confirmCallback = null;
+        closeModal('confirmOverlay');
+      });
+    }
+    const confirmOverlay = document.getElementById('confirmOverlay');
+    if (confirmOverlay) {
+      confirmOverlay.addEventListener('keydown', (e) => {
+        if (e.key !== 'Enter') return;
+        const okBtn = document.getElementById('confirmOkBtn');
+        if (okBtn) okBtn.click();
+      });
+    }
+
+    const destList = document.getElementById('destList');
+    if (destList) {
+      destList.addEventListener('click', (e) => {
+        const editBtn = e.target.closest('[data-action="edit-dest"]');
+        if (editBtn) { openDestModal(editBtn.dataset.id); return; }
+        const delBtn = e.target.closest('[data-action="delete-dest"]');
+        if (delBtn) { confirmDeleteDest(delBtn.dataset.id); return; }
+        const row = e.target.closest('.dest-row');
+        if (!row) return;
+        if (e.target.closest('.dest-edit-target')) {
+          e.preventDefault();
+          openDestModal(row.dataset.id);
+          return;
+        }
+        state.selectedId = row.dataset.id;
+        renderAll();
+      });
+      destList.addEventListener('keydown', (e) => {
+        if (e.key !== 'Enter' && e.key !== ' ') return;
+        const row = e.target.closest('.dest-row');
+        if (row) {
+          e.preventDefault();
+          if (e.target.closest('.dest-edit-target')) {
+            openDestModal(row.dataset.id);
+            return;
+          }
+          state.selectedId = row.dataset.id;
+          renderAll();
+        }
+      });
+      destList.addEventListener('dragstart', (e) => {
+        const row = e.target.closest('.dest-row');
+        if (!row) return;
+        row.classList.add('dragging');
+        if (e.dataTransfer) {
+          e.dataTransfer.effectAllowed = 'move';
+          e.dataTransfer.setData('text/plain', row.dataset.id || '');
+        }
+      });
+      destList.addEventListener('dragover', (e) => {
+        const dragging = destList.querySelector('.dest-row.dragging');
+        if (!dragging) return;
+        e.preventDefault();
+        const afterElement = getDestDragAfterElement(destList, e.clientY);
+        if (afterElement == null) destList.appendChild(dragging);
+        else destList.insertBefore(dragging, afterElement);
+      });
+      destList.addEventListener('drop', (e) => {
+        if (!destList.querySelector('.dest-row.dragging')) return;
+        e.preventDefault();
+        saveDestOrderFromList(destList);
+      });
+      destList.addEventListener('dragend', () => {
+        const dragging = destList.querySelector('.dest-row.dragging');
+        if (dragging) dragging.classList.remove('dragging');
+        saveDestOrderFromList(destList);
+      });
+    }
+
+    const diaryMain = document.getElementById('diaryMain');
+    if (diaryMain) {
+      diaryMain.addEventListener('click', (e) => {
+        const orderEntryBtn = e.target.closest('#orderEntryBtn');
+        if (orderEntryBtn) { openOrderModal(state.selectedId); return; }
+        const addEntryBtn = e.target.closest('#addEntryBtn');
+        if (addEntryBtn) { openEntryModal(state.selectedId, null); return; }
+        const editDestBtn = e.target.closest('[data-action="edit-dest"]');
+        if (editDestBtn) { openDestModal(editDestBtn.dataset.id); return; }
+        const delDestBtn = e.target.closest('[data-action="delete-dest"]');
+        if (delDestBtn) { confirmDeleteDest(delDestBtn.dataset.id); return; }
+
+        const entryDateBtn = e.target.closest('[data-action="open-entry-date"]');
+        if (entryDateBtn) {
+          const dest = getDest(state.selectedId);
+          const entry = dest ? dest.entries.find((item) => item.id === entryDateBtn.dataset.id) : null;
+          openCuteCalendar(entryDateBtn, entry ? entry.date : todayStr(), (value) => changeEntryDate(state.selectedId, entryDateBtn.dataset.id, value));
+          return;
+        }
+
+        const editEntryBtn = e.target.closest('[data-action="edit-entry"]');
+        if (editEntryBtn) { openEntryModal(state.selectedId, editEntryBtn.dataset.id); return; }
+        const delEntryBtn = e.target.closest('[data-action="delete-entry"]');
+        if (delEntryBtn) { confirmDeleteEntry(state.selectedId, delEntryBtn.dataset.id); return; }
+      });
+      diaryMain.addEventListener('change', (e) => {
+        const toggle = e.target.closest('[data-action="toggle-entry-collapse"]');
+        if (toggle) {
+          toggleEntryCollapse(state.selectedId, toggle.dataset.id, toggle.checked);
+          return;
+        }
+        const datePicker = e.target.closest('[data-action="change-entry-date"]');
+        if (datePicker) {
+          changeEntryDate(state.selectedId, datePicker.dataset.id, datePicker.value);
+        }
+      });
+    }
+
+    const exportBtn = document.getElementById('exportBtn');
+    if (exportBtn) exportBtn.addEventListener('click', exportData);
+    const importBtn = document.getElementById('importBtn');
+    const importFile = document.getElementById('importFile');
+    if (importBtn && importFile) {
+      importBtn.addEventListener('click', () => importFile.click());
+      importFile.addEventListener('change', (e) => {
+        const file = e.target.files && e.target.files[0];
+        if (file) importData(file);
+        importFile.value = '';
+      });
+    }
+
+    document.querySelectorAll('.modal-overlay').forEach((overlay) => {
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) overlay.classList.remove('open');
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      const popover = document.getElementById('cuteCalendarPopover');
+      if (!popover || popover.hidden) return;
+      const actionBtn = e.target.closest('[data-calendar-action]');
+      if (actionBtn) {
+        const action = actionBtn.dataset.calendarAction;
+        if (action === 'prev') cuteCalendarViewDate.setMonth(cuteCalendarViewDate.getMonth() - 1);
+        if (action === 'next') cuteCalendarViewDate.setMonth(cuteCalendarViewDate.getMonth() + 1);
+        if (action === 'today') {
+          selectCuteDate(todayStr());
+          return;
+        }
+        renderCuteCalendar();
+        if (cuteCalendarContext) positionCuteCalendar(cuteCalendarContext.anchor);
+        return;
+      }
+      const dayBtn = e.target.closest('[data-date]');
+      if (dayBtn && popover.contains(dayBtn)) {
+        selectCuteDate(dayBtn.dataset.date);
+        return;
+      }
+      const anchor = cuteCalendarContext && cuteCalendarContext.anchor;
+      if (!popover.contains(e.target) && !(anchor && anchor.contains(e.target))) closeCuteCalendar();
+    });
+
+    window.addEventListener('resize', () => {
+      if (cuteCalendarContext) positionCuteCalendar(cuteCalendarContext.anchor);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeCuteCalendar();
+        closeAllModals();
+      }
+    });
+  }
+
+  // ---------- 초기화 ----------
+
+  function init() {
+    initTheme();
+    state = loadState();
+    if (!state.selectedId && state.destinations.length) {
+      state.selectedId = state.destinations[0].id;
+    }
+
+    initFlapTitle();
+    buildFlagGrid('flagGrid', FLAG_CODES);
+    buildIconGrid('iconGrid', ICONS);
+    bindEvents();
+    renderAll();
+
+    updateClock();
+    setInterval(updateClock, 1000);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+</body>
+</html>
