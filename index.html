@@ -277,8 +277,8 @@
 
   function renderIcon(icon, cls='') {
     if (String(icon).startsWith('flag:')) {
-      const code = icon.slice(5);
-      return `<span class="flag-emoji ${cls}" aria-hidden="true">${flagEmojiFromCode(code)}</span>`;
+      const code = icon.slice(5).toLowerCase();
+      return `<img class="flag ${cls}" src="flags/${code}.svg" alt="${code.toUpperCase()} 국기" loading="lazy">`;
     }
     return `<span class="${cls}">${escapeHtml(icon || '📍')}</span>`;
   }
