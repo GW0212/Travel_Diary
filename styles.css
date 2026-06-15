@@ -3046,3 +3046,177 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   color: #0f151e !important;
   box-shadow: 0 8px 22px rgba(224,168,74,.24) !important;
 }
+
+/* =========================================================
+   Refinement 25: mobile header/action layout and compact calendar
+   ========================================================= */
+@media (max-width: 640px){
+  .dest-header-actions{
+    position: static !important;
+    transform: none !important;
+    width: 100% !important;
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 42px !important;
+    grid-template-areas:
+      "order add edit"
+      "order add delete" !important;
+    align-items: center !important;
+    justify-items: stretch !important;
+    column-gap: 10px !important;
+    row-gap: 8px !important;
+    margin: 2px 0 0 !important;
+  }
+  .dest-header-actions .btn-order-inline{
+    grid-area: order !important;
+    align-self: center !important;
+    justify-self: center !important;
+    width: 100% !important;
+    min-height: 40px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+  .dest-header-actions .btn-add-entry-inline{
+    grid-area: add !important;
+    align-self: center !important;
+    justify-self: center !important;
+    width: 100% !important;
+    min-height: 40px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+  .dest-header-actions [data-action="edit-dest"]{
+    grid-area: edit !important;
+  }
+  .dest-header-actions [data-action="delete-dest"]{
+    grid-area: delete !important;
+  }
+  .dest-header-actions .btn-icon{
+    width: 42px !important;
+    height: 42px !important;
+    min-width: 42px !important;
+    min-height: 42px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    justify-self: center !important;
+    align-self: center !important;
+    border: 1px solid var(--panel-border) !important;
+    border-radius: 12px !important;
+    background: var(--panel-light) !important;
+    box-shadow: 0 4px 12px rgba(60,45,20,.08) !important;
+  }
+
+  .entry-top{
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    align-items: start !important;
+    column-gap: 8px !important;
+    row-gap: 6px !important;
+  }
+  .entry-title-group{
+    max-width: none !important;
+    width: 100% !important;
+    padding-left: 0 !important;
+    gap: 8px !important;
+  }
+  .entry-title-line{
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    width: 100% !important;
+  }
+  .entry-actions{
+    position: static !important;
+    right: auto !important;
+    top: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 6px !important;
+    align-items: center !important;
+    justify-content: center !important;
+    justify-self: end !important;
+    align-self: start !important;
+  }
+  .entry-actions .btn-icon{
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+    min-height: 36px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border: 1px solid var(--panel-border) !important;
+    border-radius: 12px !important;
+    background: var(--panel-light) !important;
+    box-shadow: 0 4px 12px rgba(60,45,20,.08) !important;
+  }
+  .entry-date-control{
+    margin-top: 4px !important;
+    margin-left: 27px !important;
+    align-self: flex-start !important;
+    justify-content: flex-start !important;
+  }
+
+  .cute-calendar-popover{
+    left: 12px !important;
+    right: 12px !important;
+    width: auto !important;
+    top: 50% !important;
+    bottom: auto !important;
+    transform: translateY(-50%) !important;
+    padding: 10px !important;
+    border-radius: 18px !important;
+    max-width: calc(100vw - 24px) !important;
+  }
+  .cute-calendar-head{
+    grid-template-columns: 30px 1fr 30px !important;
+    gap: 6px !important;
+    margin-bottom: 8px !important;
+  }
+  .cute-calendar-title strong{
+    font-size: .88rem !important;
+  }
+  .cute-calendar-weekdays,
+  .cute-calendar-grid{
+    gap: 3px !important;
+  }
+  .cute-calendar-weekdays{
+    font-size: .56rem !important;
+    margin-bottom: 4px !important;
+  }
+  .cute-calendar-day{
+    height: 27px !important;
+    font-size: .68rem !important;
+    border-radius: 9px !important;
+  }
+  .cute-calendar-nav,
+  .cute-calendar-today{
+    min-height: 28px !important;
+    font-size: .66rem !important;
+    padding: 0 10px !important;
+  }
+  .cute-calendar-foot{
+    margin-top: 8px !important;
+  }
+}
+
+@media (max-width: 420px){
+  .dest-header-actions{
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 42px !important;
+    grid-template-areas:
+      "order add edit"
+      "order add delete" !important;
+  }
+}
+
+:root[data-theme="dark"] .dest-header-actions .btn-icon,
+:root[data-theme="dark"] .entry-actions .btn-icon{
+  background: #101720 !important;
+  border-color: #5b6a82 !important;
+  color: #e7e9ee !important;
+  box-shadow: 0 6px 16px rgba(0,0,0,.26) !important;
+}
