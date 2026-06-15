@@ -3503,3 +3503,23 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     align-content: center !important;
   }
 }
+
+/* =========================================================
+   Refinement 30: place mobile destination header edit/close buttons at top
+   ========================================================= */
+@media (max-width: 640px){
+  .dest-header-actions{
+    align-items: start !important;
+    align-content: start !important;
+    grid-auto-rows: min-content !important;
+  }
+
+  .dest-header-actions [data-action="edit-dest"],
+  .dest-header-actions [data-action="delete-dest"],
+  .dest-header-actions .btn-icon{
+    align-self: start !important;
+    justify-self: end !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+}
