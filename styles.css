@@ -1227,3 +1227,314 @@ textarea { resize: vertical; }
     padding-right: 0 !important;
   }
 }
+
+
+/* =========================================================
+   V8: mobile collapsed spacing + horizontal action buttons
+   ========================================================= */
+
+/* 기본적으로 카드 우측 액션은 PC/모바일 모두 좌우 정렬 */
+.selected-actions {
+  align-items: center;
+}
+
+.entry-actions {
+  flex-direction: row !important;
+  align-items: flex-start !important;
+  justify-content: flex-end !important;
+  gap: 8px !important;
+}
+
+/* 체크된 기록 카드의 하단 여백 압축 */
+.entry-card.collapsed {
+  padding-top: 22px !important;
+  padding-bottom: 22px !important;
+}
+
+.entry-card.collapsed .entry-head {
+  margin-bottom: 0 !important;
+}
+
+.entry-card.collapsed .entry-body {
+  display: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* 모바일 전용 정리 */
+@media (max-width: 640px) {
+  /* 여행지 제목 박스: 수정/X 버튼은 우측 상단에서 좌우 정렬 */
+  .selected-panel {
+    position: relative !important;
+    padding: 24px 16px !important;
+    padding-right: 18px !important;
+  }
+
+  .selected-title {
+    padding-right: 0 !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  .selected-actions {
+    position: relative !important;
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+    gap: 8px !important;
+    padding-right: 82px !important;
+    margin-top: 8px !important;
+    align-items: center !important;
+  }
+
+  .selected-actions #orderBtn,
+  .selected-actions #addEntryBtn {
+    width: 100% !important;
+    min-height: 42px !important;
+  }
+
+  .selected-actions #editDestinationBtn,
+  .selected-actions #deleteDestinationBtn {
+    position: absolute !important;
+    top: 0 !important;
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+    min-height: 36px !important;
+    border-radius: 11px !important;
+    z-index: 3 !important;
+  }
+
+  .selected-actions #editDestinationBtn {
+    right: 42px !important;
+  }
+
+  .selected-actions #deleteDestinationBtn {
+    right: 0 !important;
+  }
+
+  /* 기록 박스: 제목은 우측 액션 버튼과 겹치지 않게 폭 제한 + 줄바꿈 */
+  .entry-card {
+    padding: 20px 16px !important;
+  }
+
+  .entry-head {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) 78px !important;
+    gap: 10px !important;
+    align-items: start !important;
+  }
+
+  .entry-title-wrap {
+    min-width: 0 !important;
+    align-items: flex-start !important;
+  }
+
+  .entry-title-wrap h3 {
+    max-width: 100% !important;
+    line-height: 1.35 !important;
+    word-break: keep-all !important;
+    overflow-wrap: anywhere !important;
+    white-space: normal !important;
+  }
+
+  .entry-actions {
+    position: static !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    justify-content: flex-end !important;
+    gap: 6px !important;
+    width: 78px !important;
+  }
+
+  .entry-actions .square-btn {
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    min-height: 34px !important;
+    border-radius: 11px !important;
+  }
+
+  /* 체크된 상태에서 모바일 하단 빈 공간 최소화 */
+  .entry-card.collapsed {
+    min-height: 0 !important;
+    padding-top: 18px !important;
+    padding-bottom: 18px !important;
+  }
+
+  .entry-card.collapsed .entry-head {
+    align-items: center !important;
+  }
+
+  .entry-card.collapsed .entry-title-wrap {
+    align-items: center !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .selected-actions {
+    padding-right: 76px !important;
+  }
+
+  .selected-actions #editDestinationBtn,
+  .selected-actions #deleteDestinationBtn {
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    min-height: 34px !important;
+  }
+
+  .selected-actions #editDestinationBtn {
+    right: 39px !important;
+  }
+
+  .entry-head {
+    grid-template-columns: minmax(0, 1fr) 74px !important;
+  }
+
+  .entry-actions {
+    width: 74px !important;
+  }
+
+  .entry-actions .square-btn {
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    min-height: 32px !important;
+  }
+}
+
+
+/* =========================================================
+   V9: modal close buttons, icon grid clipping fix, scroll-to-top
+   ========================================================= */
+
+.modal {
+  position: relative;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 34px;
+  height: 34px;
+  min-width: 34px;
+  min-height: 34px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--panel2);
+  color: var(--muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.05rem;
+  line-height: 1;
+  box-shadow: 0 4px 12px rgba(66,49,23,.06);
+  z-index: 5;
+}
+
+.modal-close-btn:hover {
+  border-color: var(--amber);
+  color: var(--amber);
+}
+
+/* 제목과 닫기 버튼이 겹치지 않도록 우측 여백 확보 */
+.modal h2 {
+  padding: 0 42px;
+}
+
+/* 아이콘 선택 창에서 국기 텍스트/이미지 상단 잘림 방지 */
+.icon-grid {
+  align-items: stretch;
+}
+
+.icon-cell {
+  overflow: visible !important;
+  min-height: 62px;
+  padding: 8px 6px;
+  line-height: 1.2;
+}
+
+.icon-cell .flag,
+.icon-cell .flag-emoji,
+.icon-cell img {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+}
+
+.icon-cell small {
+  line-height: 1.25;
+  overflow: visible;
+  white-space: normal;
+}
+
+/* 최상단 이동 버튼 */
+.scroll-top-btn {
+  position: fixed;
+  right: max(18px, env(safe-area-inset-right));
+  bottom: max(22px, env(safe-area-inset-bottom));
+  z-index: 240;
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--panel);
+  color: var(--amber);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  font-weight: 900;
+  box-shadow: var(--shadow);
+  opacity: 0;
+  transform: translateY(16px) scale(.92);
+  pointer-events: none;
+  transition: opacity .2s ease, transform .2s ease, border-color .2s ease, background .2s ease;
+}
+
+.scroll-top-btn.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.scroll-top-btn:hover {
+  border-color: var(--amber);
+  background: var(--panel2);
+}
+
+@media (max-width: 640px) {
+  .modal-close-btn {
+    top: 12px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    min-height: 32px;
+    border-radius: 11px;
+  }
+
+  .modal h2 {
+    padding: 0 38px;
+  }
+
+  .icon-cell {
+    min-height: 64px;
+    padding: 9px 5px 7px;
+  }
+
+  .icon-cell small {
+    font-size: .56rem;
+  }
+
+  .scroll-top-btn {
+    width: 46px;
+    height: 46px;
+    right: max(16px, env(safe-area-inset-right));
+    bottom: max(18px, env(safe-area-inset-bottom));
+  }
+}

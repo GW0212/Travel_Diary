@@ -43,6 +43,7 @@
 
   <div class="modal-layer" id="destinationModal" aria-hidden="true">
     <div class="modal small-modal" role="dialog" aria-modal="true" aria-labelledby="destinationModalTitle">
+      <button class="modal-close-btn" data-close="destinationModal" type="button" aria-label="닫기">×</button>
       <h2 id="destinationModalTitle">여행지 추가</h2>
       <label class="field">
         <span>아이콘</span>
@@ -65,6 +66,7 @@
 
   <div class="modal-layer" id="iconModal" aria-hidden="true">
     <div class="modal icon-modal" role="dialog" aria-modal="true">
+      <button class="modal-close-btn" data-close="iconModal" type="button" aria-label="닫기">×</button>
       <h2>아이콘 선택</h2>
       <p class="modal-sub">국기를 선택하면 나라명이 자동으로 입력돼요.</p>
       <div class="icon-section-title">국기</div>
@@ -83,6 +85,7 @@
 
   <div class="modal-layer" id="entryModal" aria-hidden="true">
     <div class="modal entry-modal" role="dialog" aria-modal="true" aria-labelledby="entryModalTitle">
+      <button class="modal-close-btn" data-close="entryModal" type="button" aria-label="닫기">×</button>
       <h2 id="entryModalTitle">기록 추가</h2>
       <label class="field">
         <span>제목</span>
@@ -115,6 +118,7 @@
 
   <div class="modal-layer" id="orderModal" aria-hidden="true">
     <div class="modal order-modal" role="dialog" aria-modal="true">
+      <button class="modal-close-btn" data-close="orderModal" type="button" aria-label="닫기">×</button>
       <h2>순서 변경</h2>
       <p class="modal-sub">드래그하거나 숫자를 입력해 순서를 정리하세요.</p>
       <div class="order-list" id="orderList"></div>
@@ -127,6 +131,7 @@
 
   <div class="modal-layer" id="confirmModal" aria-hidden="true">
     <div class="modal confirm-modal" role="dialog" aria-modal="true">
+      <button class="modal-close-btn" data-close="confirmModal" type="button" aria-label="닫기">×</button>
       <div class="confirm-icon">🗑️</div>
       <p id="confirmText">삭제하시겠습니까?</p>
       <div class="modal-actions">
@@ -135,6 +140,8 @@
       </div>
     </div>
   </div>
+
+  <button class="scroll-top-btn" id="scrollTopBtn" type="button" aria-label="최상단으로 이동" title="최상단으로 이동">↑</button>
 
   <div class="calendar" id="calendar" hidden></div>
   <div class="toast" id="toast"></div>
@@ -913,6 +920,16 @@
         if (event.target === layer) closeModal(layer.id);
       });
     });
+
+    const scrollTopBtn = $('#scrollTopBtn');
+    if (scrollTopBtn) {
+      const toggleScrollTop = () => {
+        scrollTopBtn.classList.toggle('show', window.scrollY > 360);
+      };
+      window.addEventListener('scroll', toggleScrollTop, {passive: true});
+      scrollTopBtn.addEventListener('click', () => window.scrollTo({top: 0, behavior: 'smooth'}));
+      toggleScrollTop();
+    }
 
     window.addEventListener('resize', positionCalendar);
     document.addEventListener('keydown', e => {
