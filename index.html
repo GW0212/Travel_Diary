@@ -197,7 +197,6 @@
   ];
 
   const MONTHS = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
-  const MONTH_LABELS_KO = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
 
   let state = null;
   let iconTargetCallback = null;
@@ -1332,11 +1331,13 @@
       }
       popover.innerHTML = `
         <div class="cute-calendar-head cute-calendar-head--picker">
-          <button type="button" class="cute-calendar-nav" data-calendar-action="prev-year-range" aria-label="이전 연도 목록">‹</button>
-          <button type="button" class="cute-calendar-title-btn" data-calendar-action="toggle-picker" aria-label="월 선택으로 돌아가기"><span>🐻</span><strong>${startYear}년 - ${startYear + 11}년</strong></button>
-          <button type="button" class="cute-calendar-nav" data-calendar-action="next-year-range" aria-label="다음 연도 목록">›</button>
+          <button type="button" class="cute-calendar-nav" data-calendar-action="prev-year-page" aria-label="이전 연도 목록">‹</button>
+          <button type="button" class="cute-calendar-title-btn" data-calendar-action="toggle-picker" aria-label="월 선택으로 돌아가기"><span>🐻</span><strong>연도 선택</strong></button>
+          <button type="button" class="cute-calendar-nav" data-calendar-action="next-year-page" aria-label="다음 연도 목록">›</button>
         </div>
-        <div class="cute-calendar-year-grid">${yearButtons.join('')}</div>
+        <div class="cute-calendar-pick-body">
+          <div class="cute-calendar-year-grid">${yearButtons.join('')}</div>
+        </div>
         <div class="cute-calendar-foot">
           <button type="button" class="cute-calendar-today" data-calendar-action="today">오늘</button>
         </div>
@@ -1345,17 +1346,19 @@
     }
 
     if (cuteCalendarPickerMode === 'months') {
-      const monthButtons = MONTH_LABELS_KO.map((label, index) => {
+      const monthButtons = Array.from({ length: 12 }, (_, index) => {
         const active = index === month ? ' is-selected' : '';
-        return `<button type="button" class="cute-calendar-month${active}" data-calendar-action="select-month" data-month="${index}">${label}</button>`;
+        return `<button type="button" class="cute-calendar-month${active}" data-calendar-action="select-month" data-month="${index}">${index + 1}월</button>`;
       }).join('');
       popover.innerHTML = `
         <div class="cute-calendar-head cute-calendar-head--picker">
           <button type="button" class="cute-calendar-nav" data-calendar-action="prev-year" aria-label="이전 년도">‹</button>
-          <button type="button" class="cute-calendar-title-btn" data-calendar-action="open-year-picker" aria-label="연도 선택"><span>🐻</span><strong>${year}년</strong></button>
+          <button type="button" class="cute-calendar-title-btn" data-calendar-action="toggle-picker" aria-label="연도 선택"><span>🐻</span><strong>${year}년</strong></button>
           <button type="button" class="cute-calendar-nav" data-calendar-action="next-year" aria-label="다음 년도">›</button>
         </div>
-        <div class="cute-calendar-month-grid">${monthButtons}</div>
+        <div class="cute-calendar-pick-body">
+          <div class="cute-calendar-month-grid">${monthButtons}</div>
+        </div>
         <div class="cute-calendar-foot">
           <button type="button" class="cute-calendar-today" data-calendar-action="today">오늘</button>
         </div>
@@ -1845,26 +1848,25 @@
         if (action === 'next') cuteCalendarViewDate.setMonth(cuteCalendarViewDate.getMonth() + 1);
         if (action === 'prev-year') cuteCalendarViewDate.setFullYear(cuteCalendarViewDate.getFullYear() - 1);
         if (action === 'next-year') cuteCalendarViewDate.setFullYear(cuteCalendarViewDate.getFullYear() + 1);
-        if (action === 'prev-year-range') cuteCalendarViewDate.setFullYear(cuteCalendarViewDate.getFullYear() - 12);
-        if (action === 'next-year-range') cuteCalendarViewDate.setFullYear(cuteCalendarViewDate.getFullYear() + 12);
+        if (action === 'prev-year-page') cuteCalendarViewDate.setFullYear(cuteCalendarViewDate.getFullYear() - 12);
+        if (action === 'next-year-page') cuteCalendarViewDate.setFullYear(cuteCalendarViewDate.getFullYear() + 12);
         if (action === 'toggle-picker') {
-          cuteCalendarPickerMode = cuteCalendarPickerMode === 'days' ? 'months' : 'days';
-        }
-        if (action === 'open-year-picker') {
-          cuteCalendarPickerMode = 'years';
-        }
-        if (action === 'select-year') {
-          const selectedYear = Number(actionBtn.dataset.year);
-          if (Number.isInteger(selectedYear)) {
-            cuteCalendarViewDate.setFullYear(selectedYear);
-            cuteCalendarPickerMode = 'months';
-          }
+          if (cuteCalendarPickerMode === 'days') cuteCalendarPickerMode = 'months';
+          else if (cuteCalendarPickerMode === 'months') cuteCalendarPickerMode = 'years';
+          else cuteCalendarPickerMode = 'months';
         }
         if (action === 'select-month') {
           const month = Number(actionBtn.dataset.month);
           if (Number.isInteger(month) && month >= 0 && month <= 11) {
             cuteCalendarViewDate.setMonth(month);
             cuteCalendarPickerMode = 'days';
+          }
+        }
+        if (action === 'select-year') {
+          const year = Number(actionBtn.dataset.year);
+          if (Number.isInteger(year)) {
+            cuteCalendarViewDate.setFullYear(year);
+            cuteCalendarPickerMode = 'months';
           }
         }
         if (action === 'today') {

@@ -3410,3 +3410,96 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     white-space: nowrap !important;
   }
 }
+
+
+/* =========================================================
+   Refinement 29: mobile plus button, compact action icons, stable calendar picker
+   ========================================================= */
+@media (max-width: 640px){
+  .board-label{
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    grid-template-columns: none !important;
+    min-height: 42px !important;
+    padding: 0 56px 10px 56px !important;
+    text-align: center !important;
+  }
+  .board-label-title{
+    width: 100% !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+  .board-label .btn-add-dest{
+    position: absolute !important;
+    top: 0 !important;
+    right: 10px !important;
+    margin: 0 !important;
+    justify-self: auto !important;
+  }
+
+  .dest-header-actions{
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 30px !important;
+    grid-template-areas:
+      "order add edit"
+      "order add delete" !important;
+    align-items: center !important;
+    column-gap: 8px !important;
+    row-gap: 6px !important;
+  }
+  .dest-header-actions .btn-icon,
+  .entry-actions .btn-icon{
+    width: 30px !important;
+    height: 30px !important;
+    min-width: 30px !important;
+    min-height: 30px !important;
+    border-radius: 10px !important;
+    font-size: .84rem !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+  }
+  .dest-header-actions .btn-order-inline,
+  .dest-header-actions .btn-add-entry-inline{
+    min-height: 40px !important;
+  }
+
+  .cute-calendar-popover{
+    min-height: 286px !important;
+    max-height: 286px !important;
+    overflow: hidden !important;
+  }
+  .cute-calendar-head{
+    min-height: 32px !important;
+  }
+  .cute-calendar-pick-body{
+    min-height: 176px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .cute-calendar-month-grid,
+  .cute-calendar-year-grid{
+    width: 100% !important;
+    align-content: center !important;
+  }
+}
+
+@media (min-width: 641px){
+  .cute-calendar-popover{
+    min-height: 338px !important;
+  }
+  .cute-calendar-pick-body{
+    min-height: 214px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .cute-calendar-month-grid,
+  .cute-calendar-year-grid{
+    width: 100% !important;
+    align-content: center !important;
+  }
+}
