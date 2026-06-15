@@ -3523,3 +3523,47 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     margin-bottom: 0 !important;
   }
 }
+
+/* =========================================================
+   Refinement 31: truly pin mobile destination edit/close buttons to top-right
+   ========================================================= */
+@media (max-width: 640px){
+  .dest-header{
+    position: relative !important;
+  }
+
+  .dest-header-actions{
+    position: static !important;
+    width: 100% !important;
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+    grid-template-areas: "order add" !important;
+    column-gap: 8px !important;
+    row-gap: 0 !important;
+    padding-right: 44px !important;
+    margin-top: 10px !important;
+    align-items: center !important;
+  }
+
+  .dest-header-actions .btn-order-inline{
+    grid-area: order !important;
+  }
+
+  .dest-header-actions .btn-add-entry-inline{
+    grid-area: add !important;
+  }
+
+  .dest-header-actions [data-action="edit-dest"]{
+    position: absolute !important;
+    top: 16px !important;
+    right: 14px !important;
+    z-index: 3 !important;
+  }
+
+  .dest-header-actions [data-action="delete-dest"]{
+    position: absolute !important;
+    top: 52px !important;
+    right: 14px !important;
+    z-index: 3 !important;
+  }
+}
