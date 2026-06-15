@@ -1058,3 +1058,98 @@ textarea { resize: vertical; }
     top: 58px;
   }
 }
+
+
+/* Final fix: destination title actions pinned inside top-right + Date directly under entry title */
+.selected-panel {
+  position: relative;
+}
+.selected-tools {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.entry-main {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+.entry-main .date-chip {
+  margin-left: 32px;
+}
+.entry-body {
+  margin-top: 12px;
+}
+.entry-card.collapsed .date-chip {
+  display: none;
+}
+.entry-card.collapsed .entry-body {
+  display: none !important;
+}
+
+@media (min-width: 901px) {
+  .selected-panel {
+    grid-template-columns: minmax(0, 1fr) auto auto;
+  }
+  .selected-tools {
+    order: 3;
+  }
+  .selected-actions {
+    order: 2;
+  }
+}
+
+@media (max-width: 900px) {
+  .selected-panel {
+    position: relative !important;
+  }
+  .selected-tools {
+    position: absolute !important;
+    top: 16px !important;
+    right: 16px !important;
+    z-index: 4 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+    width: 34px !important;
+  }
+  .selected-tools .square-btn {
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    min-height: 34px !important;
+    border-radius: 11px !important;
+  }
+  .selected-title {
+    padding-right: 46px !important;
+  }
+  .selected-actions {
+    position: static !important;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+    padding-right: 46px !important;
+  }
+  .selected-actions #editDestinationBtn,
+  .selected-actions #deleteDestinationBtn {
+    position: static !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .entry-main {
+    gap: 7px !important;
+  }
+  .entry-main .date-chip {
+    margin-left: 32px !important;
+  }
+  .entry-body {
+    margin-top: 10px !important;
+    padding-left: 32px !important;
+  }
+  .entry-text {
+    margin-top: 0 !important;
+  }
+}
