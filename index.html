@@ -282,10 +282,15 @@
     return state.destinations.find(d => d.id === state.selectedId) || state.destinations[0] || null;
   }
 
+  function flagSrc(code) {
+    const normalized = String(code || '').toLowerCase();
+    return `https://flagcdn.com/${normalized}.svg`;
+  }
+
   function renderIcon(icon, cls='') {
     if (String(icon).startsWith('flag:')) {
       const code = icon.slice(5).toLowerCase();
-      return `<img class="flag ${cls}" src="flags/${code}.svg" alt="${code.toUpperCase()} 국기" loading="lazy">`;
+      return `<img class="flag ${cls}" src="${flagSrc(code)}" alt="${code.toUpperCase()} 국기" loading="lazy">`;
     }
     return `<span class="${cls}">${escapeHtml(icon || '📍')}</span>`;
   }
@@ -365,9 +370,9 @@
                 </button>
                 <h3>${escapeHtml(entry.title || '제목 없음')}</h3>
               </div>
-              <button class="date-chip" data-action="entry-date" data-entry-id="${entry.id}" type="button">
-                <span>DATE</span><b>${formatDate(entry.date)}</b><em>🗓️</em>
-              </button>
+              <div class="date-chip static-chip" aria-label="기록 날짜">
+                <b>${formatDate(entry.date)}</b>
+              </div>
             </div>
             <div class="entry-actions">
               <button class="square-btn" data-action="edit-entry" data-entry-id="${entry.id}" type="button" aria-label="기록 수정">✎</button>
@@ -436,12 +441,16 @@
     const el = $('#' + id);
     el.classList.add('open');
     el.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
   }
 
   function closeModal(id) {
     const el = $('#' + id);
     el.classList.remove('open');
     el.setAttribute('aria-hidden', 'true');
+    if (!$$('.modal-layer.open').length) {
+      document.body.classList.remove('modal-open');
+    }
   }
 
   function openDestinationModal(id=null) {

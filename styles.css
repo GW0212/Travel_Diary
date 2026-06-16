@@ -1538,3 +1538,232 @@ textarea { resize: vertical; }
     bottom: max(18px, env(safe-area-inset-bottom));
   }
 }
+
+
+/* =========================================================
+   V10: real flags + centered modals + mobile selected header cleanup
+   ========================================================= */
+
+body.modal-open {
+  overflow: hidden;
+  touch-action: none;
+}
+
+.flag {
+  display: inline-block;
+  width: 28px;
+  height: 20px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.08);
+}
+.destination-icon .flag { width: 30px; height: 22px; }
+.selected-icon .flag.large-flag { width: 64px; height: 46px; border-radius: 8px; }
+.icon-cell .flag { width: 48px; height: 34px; border-radius: 7px; }
+.icon-picker-btn .flag { width: 52px; height: 36px; border-radius: 7px; }
+
+/* modal centering on both PC/mobile */
+.modal-layer {
+  align-items: center !important;
+  justify-content: center !important;
+  overflow-y: auto;
+  padding: max(18px, env(safe-area-inset-top)) 18px max(18px, env(safe-area-inset-bottom));
+}
+.modal-layer.open {
+  display: flex !important;
+}
+.modal {
+  margin: auto;
+  width: min(560px, 100%);
+  max-height: min(88vh, calc(100dvh - 36px));
+  overflow: auto;
+}
+.small-modal { width: min(480px, 100%); }
+.entry-modal { width: min(620px, 100%); }
+.order-modal { width: min(680px, 100%); }
+.icon-modal { width: min(760px, 100%); }
+
+/* icon modal title never clipped */
+.icon-modal {
+  padding-top: 26px;
+}
+.icon-grid {
+  align-items: stretch;
+}
+.icon-cell {
+  min-height: 94px !important;
+  padding: 12px 8px 10px !important;
+  gap: 8px !important;
+  overflow: visible !important;
+}
+.icon-cell small {
+  white-space: normal !important;
+  line-height: 1.3 !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+}
+
+/* selected header card */
+.selected-panel {
+  position: relative;
+}
+.selected-tools {
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 8px !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+}
+.selected-tools .square-btn,
+.entry-actions .square-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* entry date display: view only */
+.date-chip.static-chip {
+  pointer-events: none;
+  cursor: default;
+  gap: 0 !important;
+  padding: 0 18px !important;
+}
+.date-chip.static-chip span,
+.date-chip.static-chip em {
+  display: none !important;
+}
+.entry-main .static-chip {
+  margin-left: 32px;
+}
+
+@media (max-width: 640px) {
+  .modal-layer {
+    padding: max(16px, env(safe-area-inset-top)) 12px max(16px, env(safe-area-inset-bottom));
+  }
+
+  .modal {
+    width: min(760px, 100%);
+    max-height: calc(100dvh - 28px) !important;
+    border-radius: 26px !important;
+    padding: 22px 16px 18px !important;
+    margin: auto !important;
+  }
+
+  .icon-modal {
+    max-height: calc(100dvh - 24px) !important;
+    padding-top: 24px !important;
+  }
+
+  .icon-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 10px !important;
+  }
+
+  .icon-cell {
+    min-height: 98px !important;
+    padding: 12px 6px 10px !important;
+  }
+
+  .icon-cell .flag { width: 44px !important; height: 31px !important; }
+
+  /* 여행지 제목 박스: 제목/수정삭제 같은 줄, 액션 버튼은 아래 한 줄 중앙 */
+  .selected-panel {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    grid-template-areas:
+      'title tools'
+      'actions actions' !important;
+    gap: 14px 10px !important;
+    padding: 20px 16px !important;
+  }
+
+  .selected-title {
+    grid-area: title !important;
+    justify-content: flex-start !important;
+    text-align: left !important;
+    gap: 12px !important;
+    padding-right: 0 !important;
+  }
+
+  .selected-title h2 {
+    font-size: 1.2rem !important;
+    line-height: 1.25 !important;
+    text-align: left !important;
+  }
+
+  .selected-icon .flag.large-flag {
+    width: 52px !important;
+    height: 36px !important;
+  }
+
+  .selected-tools {
+    grid-area: tools !important;
+    position: static !important;
+    width: auto !important;
+    align-self: start !important;
+    justify-self: end !important;
+    flex-direction: row !important;
+    gap: 8px !important;
+    z-index: auto !important;
+  }
+
+  .selected-tools .square-btn {
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+    min-height: 36px !important;
+    border-radius: 12px !important;
+  }
+
+  .selected-actions {
+    grid-area: actions !important;
+    position: static !important;
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+    gap: 10px !important;
+    width: 100% !important;
+    max-width: 440px !important;
+    margin: 4px auto 0 !important;
+    padding: 0 !important;
+    align-items: center !important;
+  }
+
+  .selected-actions .ghost-btn,
+  .selected-actions .main-btn {
+    width: 100% !important;
+    min-height: 46px !important;
+  }
+
+  /* 기록 카드 날짜 간격 축소 */
+  .entry-main {
+    gap: 6px !important;
+  }
+
+  .entry-main .static-chip {
+    margin-left: 32px !important;
+    margin-top: 0 !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .selected-title h2 {
+    font-size: 1.1rem !important;
+  }
+
+  .selected-tools .square-btn {
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    min-height: 34px !important;
+  }
+
+  .selected-actions {
+    max-width: 100% !important;
+  }
+
+  .icon-cell {
+    min-height: 92px !important;
+  }
+}
