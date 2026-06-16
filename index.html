@@ -4,6 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>TRAVEL LOG · 여행 다이어리</title>
+  <meta name="theme-color" content="#c8841f">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="TRAVEL LOG">
+  <link rel="manifest" href="manifest.json">
   <link rel="icon" href="favicon.ico" sizes="any">
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -27,16 +31,27 @@
         <h1>여행지 목록</h1>
         <button class="square-btn primary-soft" id="addDestinationBtn" type="button" aria-label="여행지 추가">+</button>
       </div>
+      <label class="mini-search">
+        <span>여행지 검색</span>
+        <input id="destinationSearchInput" type="search" placeholder="나라 또는 도시 검색">
+      </label>
       <div class="destination-list" id="destinationList"></div>
       <div class="data-row">
         <button class="ghost-btn" id="exportBtn" type="button">⬇ 내보내기</button>
         <button class="ghost-btn" id="importBtn" type="button">⬆ 가져오기</button>
+        <button class="ghost-btn danger-outline full-data-btn" id="resetDataBtn" type="button">초기화</button>
         <input id="importFile" type="file" accept="application/json" hidden>
       </div>
     </aside>
 
     <section class="content-area">
       <section class="panel selected-panel" id="selectedPanel"></section>
+      <section class="panel entry-search-panel" id="entrySearchPanel">
+        <label class="mini-search entry-search">
+          <span>기록 검색</span>
+          <input id="entrySearchInput" type="search" placeholder="기록 제목, 내용, 날짜 검색">
+        </label>
+      </section>
       <section class="entries" id="entries"></section>
     </section>
   </main>
@@ -179,6 +194,8 @@
   let calendarView = new Date();
   let calendarValue = today();
   let calendarOnSelect = null;
+  let destinationSearchTerm = '';
+  let entrySearchTerm = '';
 
   function today() {
     const d = new Date();
@@ -282,6 +299,15 @@
     return state.destinations.find(d => d.id === state.selectedId) || state.destinations[0] || null;
   }
 
+  function includesText(value, term) {
+    return String(value || '').toLowerCase().includes(String(term || '').trim().toLowerCase());
+  }
+
+  function entrySearchText(entry) {
+    const mediaText = (entry.items || []).map((item) => item.url || '').join(' ');
+    return `${entry.title || ''} ${entry.content || ''} ${entry.date || ''} ${formatDate(entry.date || today())} ${mediaText}`;
+  }
+
   function flagSrc(code) {
     const normalized = String(code || '').toLowerCase();
     return `https://flagcdn.com/${normalized}.svg`;
@@ -309,8 +335,19 @@
       list.innerHTML = '<div class="empty-small">등록된 여행지가 없습니다.</div>';
       return;
     }
-    list.innerHTML = destinations.map(dest => `
-      <button class="destination-item ${dest.id === state.selectedId ? 'active' : ''}" data-dest-id="${dest.id}" type="button" draggable="true">
+
+    const term = destinationSearchTerm.trim().toLowerCase();
+    const filtered = term
+      ? destinations.filter((dest) => includesText(`${dest.country} ${dest.city}`, term))
+      : destinations;
+
+    if (!filtered.length) {
+      list.innerHTML = '<div class="empty-small">검색 결과가 없습니다.</div>';
+      return;
+    }
+
+    list.innerHTML = filtered.map(dest => `
+      <button class="destination-item ${dest.id === state.selectedId ? 'active' : ''}" data-dest-id="${dest.id}" type="button" draggable="${term ? 'false' : 'true'}">
         <span class="destination-icon">${renderIcon(dest.icon)}</span>
         <strong>${escapeHtml(dest.country)} - ${escapeHtml(dest.city)}</strong>
         <i aria-hidden="true"></i>
@@ -343,11 +380,18 @@
 
   function renderEntries() {
     const wrap = $('#entries');
+    const searchPanel = $('#entrySearchPanel');
+    const searchInput = $('#entrySearchInput');
     const dest = selectedDest();
     if (!dest) {
+      if (searchPanel) searchPanel.hidden = true;
       wrap.innerHTML = '';
       return;
     }
+
+    if (searchPanel) searchPanel.hidden = !dest.entries.length;
+    if (searchInput && searchInput.value !== entrySearchTerm) searchInput.value = entrySearchTerm;
+
     if (!dest.entries.length) {
       wrap.innerHTML = `
         <article class="panel empty-large">
@@ -357,7 +401,23 @@
         </article>`;
       return;
     }
-    wrap.innerHTML = dest.entries.map(entry => {
+
+    const term = entrySearchTerm.trim().toLowerCase();
+    const entries = term
+      ? dest.entries.filter((entry) => includesText(entrySearchText(entry), term))
+      : dest.entries;
+
+    if (!entries.length) {
+      wrap.innerHTML = `
+        <article class="panel empty-large">
+          <div>🔎</div>
+          <h3>검색 결과가 없어요</h3>
+          <p>기록 제목, 내용, 날짜를 다른 단어로 검색해보세요.</p>
+        </article>`;
+      return;
+    }
+
+    wrap.innerHTML = entries.map(entry => {
       const hidden = entry.collapsed ? 'hidden' : '';
       const media = (entry.items || []).map(renderMedia).join('');
       return `
@@ -470,7 +530,8 @@
     const city = $('#destinationCity').value.trim();
     if (!country || !city) return showToast('나라와 도시를 입력해 주세요.', true);
 
-    if (editingDestinationId) {
+    const isEdit = Boolean(editingDestinationId);
+    if (isEdit) {
       const dest = state.destinations.find(d => d.id === editingDestinationId);
       Object.assign(dest, {country, city, icon: selectedIcon});
     } else {
@@ -480,6 +541,7 @@
     }
     closeModal('destinationModal');
     render();
+    showToast(isEdit ? '여행지가 수정되었습니다.' : '여행지가 추가되었습니다.');
   }
 
   function openIconModal() {
@@ -542,7 +604,8 @@
       return url ? {id: uid(), type: inferType(url), url} : null;
     }).filter(Boolean);
 
-    if (editingEntryId) {
+    const isEdit = Boolean(editingEntryId);
+    if (isEdit) {
       const entry = dest.entries.find(e => e.id === editingEntryId);
       Object.assign(entry, {title, content, date, items, videos: items.filter(i=>i.type==='video').map(i=>i.url), places: items.filter(i=>i.type==='map').map(i=>i.url)});
     } else {
@@ -550,6 +613,7 @@
     }
     closeModal('entryModal');
     render();
+    showToast(isEdit ? '기록이 수정되었습니다.' : '기록이 저장되었습니다.');
   }
 
   function confirm(message, callback) {
@@ -584,6 +648,7 @@
     dest.entries = ids.map(id => dest.entries.find(e => e.id === id)).filter(Boolean);
     closeModal('orderModal');
     render();
+    showToast('순서가 저장되었습니다.');
   }
 
   function openCalendar(anchor, value, onSelect) {
@@ -692,6 +757,7 @@
     a.download = `travel-log-${today()}.json`;
     a.click();
     URL.revokeObjectURL(url);
+    showToast('백업 파일을 내보냈습니다.');
   }
 
   function importData(file) {
@@ -699,6 +765,12 @@
     reader.onload = () => {
       try {
         state = normalizeState(JSON.parse(reader.result));
+        destinationSearchTerm = '';
+        entrySearchTerm = '';
+        const destSearchInput = $('#destinationSearchInput');
+        const entrySearchInput = $('#entrySearchInput');
+        if (destSearchInput) destSearchInput.value = '';
+        if (entrySearchInput) entrySearchInput.value = '';
         render();
         showToast('데이터를 가져왔습니다.');
       } catch {
@@ -706,6 +778,19 @@
       }
     };
     reader.readAsText(file);
+  }
+
+  function resetAllData() {
+    state = defaultState();
+    destinationSearchTerm = '';
+    entrySearchTerm = '';
+    const destSearchInput = $('#destinationSearchInput');
+    const entrySearchInput = $('#entrySearchInput');
+    if (destSearchInput) destSearchInput.value = '';
+    if (entrySearchInput) entrySearchInput.value = '';
+    closeModal('confirmModal');
+    render();
+    showToast('전체 데이터가 초기화되었습니다.');
   }
 
   function bindEvents() {
@@ -718,10 +803,29 @@
       $('#themeBtn').textContent = next === 'dark' ? '🌙' : '☀️';
     });
 
+    const destinationSearchInput = $('#destinationSearchInput');
+    if (destinationSearchInput) {
+      destinationSearchInput.addEventListener('input', () => {
+        destinationSearchTerm = destinationSearchInput.value;
+        renderDestinations();
+      });
+    }
+
+    const entrySearchInput = $('#entrySearchInput');
+    if (entrySearchInput) {
+      entrySearchInput.addEventListener('input', () => {
+        entrySearchTerm = entrySearchInput.value;
+        renderEntries();
+      });
+    }
+
     $('#destinationList').addEventListener('click', e => {
       const item = e.target.closest('.destination-item');
       if (!item) return;
       state.selectedId = item.dataset.destId;
+      entrySearchTerm = '';
+      const entrySearchInput = $('#entrySearchInput');
+      if (entrySearchInput) entrySearchInput.value = '';
       render();
       if (window.innerWidth <= 640) {
         setTimeout(() => $('#selectedPanel').scrollIntoView({behavior:'smooth', block:'start'}), 40);
@@ -761,6 +865,7 @@
           state.selectedId = state.destinations[0]?.id || null;
           closeModal('confirmModal');
           render();
+          showToast('여행지가 삭제되었습니다.');
         });
       }
       if (e.target.closest('#addEntryBtn')) return openEntryModal();
@@ -772,6 +877,9 @@
       if (e.target.closest('#saveOrderBtn')) return saveOrder();
       if (e.target.closest('#exportBtn')) return exportData();
       if (e.target.closest('#importBtn')) return $('#importFile').click();
+      if (e.target.closest('#resetDataBtn')) {
+        return confirm('전체 데이터를 초기화할까요? 초기화 전 내보내기로 백업하는 것을 권장합니다.', resetAllData);
+      }
 
       const close = e.target.closest('[data-close]');
       if (close) return closeModal(close.dataset.close);
@@ -796,17 +904,6 @@
         return;
       }
 
-      const entryDate = e.target.closest('[data-action="entry-date"]');
-      if (entryDate) {
-        const dest = selectedDest();
-        const entry = dest.entries.find(en => en.id === entryDate.dataset.entryId);
-        return openCalendar(entryDate, entry?.date || today(), value => {
-          if (entry) entry.date = value;
-          closeCalendar();
-          render();
-        });
-      }
-
       const editEntry = e.target.closest('[data-action="edit-entry"]');
       if (editEntry) return openEntryModal(editEntry.dataset.entryId);
 
@@ -817,6 +914,7 @@
           dest.entries = dest.entries.filter(en => en.id !== deleteEntry.dataset.entryId);
           closeModal('confirmModal');
           render();
+          showToast('기록이 삭제되었습니다.');
         });
       }
 
@@ -957,6 +1055,9 @@
     initIconGrids();
     bindEvents();
     render();
+    if ('serviceWorker' in navigator && location.protocol === 'https:') {
+      navigator.serviceWorker.register('./service-worker.js').catch(() => {});
+    }
   }
 
   init();

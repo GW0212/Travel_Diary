@@ -1,0 +1,23 @@
+{
+  "name": "TRAVEL LOG · 여행 다이어리",
+  "short_name": "TRAVEL LOG",
+  "description": "여행지와 기록을 로컬에 저장하는 여행 다이어리 웹앱",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f6f1e6",
+  "theme_color": "#c8841f",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

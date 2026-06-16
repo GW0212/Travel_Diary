@@ -1767,3 +1767,82 @@ body.modal-open {
     min-height: 92px !important;
   }
 }
+
+
+/* =========================================================
+   V11: search, reset, PWA polish
+   ========================================================= */
+.mini-search {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 12px 0 0;
+}
+
+.mini-search span {
+  color: var(--muted);
+  font-size: .72rem;
+  letter-spacing: .08em;
+  font-weight: 700;
+}
+
+.mini-search input {
+  min-height: 40px;
+  border-radius: 999px;
+  padding: 0 14px;
+  background: color-mix(in srgb, var(--panel2), #fff 18%);
+}
+
+.entry-search-panel {
+  padding: 14px 18px;
+}
+
+.entry-search-panel[hidden] {
+  display: none !important;
+}
+
+.entry-search {
+  margin: 0;
+}
+
+.data-row {
+  grid-template-columns: 1fr 1fr;
+}
+
+.full-data-btn {
+  grid-column: 1 / -1;
+}
+
+.danger-outline {
+  color: var(--red);
+  border-color: color-mix(in srgb, var(--red), var(--line) 45%);
+}
+
+.danger-outline:hover {
+  color: #fff;
+  border-color: var(--red);
+  background: var(--red);
+}
+
+.empty-small {
+  word-break: keep-all;
+}
+
+@media (max-width: 640px) {
+  .mini-search input {
+    min-height: 44px;
+    font-size: .92rem;
+  }
+
+  .entry-search-panel {
+    padding: 14px 16px;
+  }
+
+  .data-row {
+    gap: 8px;
+  }
+
+  .full-data-btn {
+    min-height: 40px;
+  }
+}
