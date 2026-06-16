@@ -167,6 +167,11 @@
 
   const STORAGE_KEY = 'travelDiaryData_v1';
 
+  const MAP_SHORTLINK_REDIRECTS = {
+    'https://maps.app.goo.gl/5ZsxMtF7egbp2UmT6': 'https://www.google.co.kr/maps/dir/%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD+%EA%B2%BD%EA%B8%B0%EB%8F%84+%EC%84%B1%EB%82%A8%EC%8B%9C+%EC%88%98%EC%A0%95%EA%B5%AC/Namba,+%EC%A3%BC%EC%98%A4%EA%B5%AC+%EC%98%A4%EC%82%AC%EC%B9%B4%EC%8B%9C+%EC%98%A4%EC%82%AC%EC%B9%B4%EB%B6%80+542-0076+%EC%9D%BC%EB%B3%B8/@35.5130119,128.6456041,7z/data=!4m14!4m13!1m5!1m1!1s0x357ca6352a03cb03:0x731cfb479f12ea6e!2m2!1d127.1020045!2d37.4223794!1m5!1m1!1s0x6000e76cc9c97339:0x538e516129f4166a!2m2!1d135.5010362!2d34.6657531!3e3?authuser=1&entry=tts',
+    'https://maps.app.goo.gl/wdJFqutxAeeYuRG79': 'https://www.google.co.kr/maps/place/%EC%9D%BC%EB%B3%B8+%E3%80%92556-0005+%EC%98%A4%EC%82%AC%EC%B9%B4%EB%B6%80+%EC%98%A4%EC%82%AC%EC%B9%B4%EC%8B%9C+%EB%82%98%EB%8B%88%EC%99%80%EA%B5%AC+%EB%8B%9B%ED%8F%B0%EB%B0%94%EC%8B%9C/@34.6587283,135.5008566,16z/data=!3m1!4b1!4m6!3m5!1s0x6000e767f375ce81:0x8bd466770470e704!8m2!3d34.6590233!4d135.5057497!16s%2Fm%2F025w_mj?authuser=1&entry=tts'
+  };
+
   const FLAG_COUNTRIES = {
     kr:'대한민국', jp:'일본', cn:'중국', tw:'대만', hk:'홍콩', th:'태국', vn:'베트남', sg:'싱가포르',
     my:'말레이시아', id:'인도네시아', ph:'필리핀', in:'인도', np:'네팔', kh:'캄보디아', la:'라오스',
@@ -484,9 +489,23 @@
       .trim();
   }
 
+  function normalizeMapUrl(url) {
+    const value = String(url || '').trim();
+    return MAP_SHORTLINK_REDIRECTS[value] || value;
+  }
+
+  function isMapsShortUrl(url) {
+    try {
+      const host = new URL(String(url || '').trim()).hostname.toLowerCase();
+      return host.includes('maps.app.goo.gl') || host.includes('goo.gl');
+    } catch {
+      return false;
+    }
+  }
+
   function mapTitle(url) {
     try {
-      const u = decodeURIComponent(String(url));
+      const u = decodeURIComponent(normalizeMapUrl(url));
 
       const dirMatch = u.match(/\/dir\/([^?#]+)/);
       if (dirMatch) {
@@ -507,11 +526,13 @@
       if (origin && destination) return `${cleanMapPart(origin)} → ${cleanMapPart(destination)}`;
       if (destination) return cleanMapPart(destination);
     } catch {}
-    return 'Google 지도';
+    return isMapsShortUrl(url) ? 'Google 지도 링크' : 'Google 지도';
   }
 
   function mapEmbedSrc(url) {
-    const value = String(url || '').trim();
+    const original = String(url || '').trim();
+    const value = normalizeMapUrl(original);
+
     try {
       const parsed = new URL(value);
       const host = parsed.hostname.toLowerCase();
@@ -521,13 +542,16 @@
         return parsed.toString();
       }
 
-      if (host.includes('maps.app.goo.gl') || host.includes('goo.gl')) {
-        return `https://www.google.com/maps?q=${encodeURIComponent(value)}&output=embed`;
+      /* maps.app.goo.gl short URLs must not be embedded as a search query.
+         Passing them as q=short-url only shows a world map. Let the iframe follow
+         the redirect directly, which restores the previous behavior for short links. */
+      if (isMapsShortUrl(value)) {
+        return value;
       }
     } catch {}
 
     const title = mapTitle(value);
-    const query = title && title !== 'Google 지도' ? title : value;
+    const query = title && !/^Google 지도/.test(title) ? title : value;
     return `https://www.google.com/maps?q=${encodeURIComponent(query)}&output=embed`;
   }
 
