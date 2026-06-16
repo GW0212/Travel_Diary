@@ -460,11 +460,11 @@
     }
     if (item.type === 'map') {
       const title = mapTitle(item.url);
-      const q = encodeURIComponent(title || item.url);
+      const embedSrc = mapEmbedSrc(item.url);
       return `
         <div class="map-box">
           <div class="map-head"><b>📍 ${escapeHtml(title || 'Google 지도')}</b><a href="${escapeHtml(item.url)}" target="_blank" rel="noopener">지도에서 보기 ↗</a></div>
-          <iframe src="https://www.google.com/maps?q=${q}&output=embed" title="Google Map" loading="lazy"></iframe>
+          <iframe src="${escapeHtml(embedSrc)}" title="Google Map" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>`;
     }
     return `<a class="plain-link" href="${escapeHtml(item.url)}" target="_blank" rel="noopener">${escapeHtml(item.url)}</a>`;
@@ -475,15 +475,60 @@
     return (s.match(/youtu\.be\/([\w-]{6,})/) || s.match(/[?&]v=([\w-]{6,})/) || s.match(/shorts\/([\w-]{6,})/) || [])[1] || '';
   }
 
+  function cleanMapPart(value) {
+    return decodeURIComponent(String(value || ''))
+      .replace(/\+/g, ' ')
+      .replace(/@.*$/, '')
+      .replace(/data=.*$/, '')
+      .replace(/[?&].*$/, '')
+      .trim();
+  }
+
   function mapTitle(url) {
     try {
       const u = decodeURIComponent(String(url));
+
+      const dirMatch = u.match(/\/dir\/([^?#]+)/);
+      if (dirMatch) {
+        const parts = dirMatch[1].split('/').map(cleanMapPart).filter(Boolean);
+        if (parts.length >= 2) return `${parts[0]} → ${parts[1]}`;
+        if (parts.length === 1) return `${parts[0]} 경로`;
+        return 'Google 지도 경로';
+      }
+
       const place = (u.match(/\/place\/([^/?]+)/) || [])[1];
-      if (place) return place.replace(/\+/g, ' ');
+      if (place) return cleanMapPart(place);
+
       const q = (u.match(/[?&]q=([^&]+)/) || [])[1];
-      if (q) return q.replace(/\+/g, ' ');
+      if (q) return cleanMapPart(q);
+
+      const destination = (u.match(/[?&]destination=([^&]+)/) || [])[1];
+      const origin = (u.match(/[?&]origin=([^&]+)/) || [])[1];
+      if (origin && destination) return `${cleanMapPart(origin)} → ${cleanMapPart(destination)}`;
+      if (destination) return cleanMapPart(destination);
     } catch {}
     return 'Google 지도';
+  }
+
+  function mapEmbedSrc(url) {
+    const value = String(url || '').trim();
+    try {
+      const parsed = new URL(value);
+      const host = parsed.hostname.toLowerCase();
+
+      if (/google\./.test(host) && parsed.pathname.includes('/maps')) {
+        parsed.searchParams.set('output', 'embed');
+        return parsed.toString();
+      }
+
+      if (host.includes('maps.app.goo.gl') || host.includes('goo.gl')) {
+        return `https://www.google.com/maps?q=${encodeURIComponent(value)}&output=embed`;
+      }
+    } catch {}
+
+    const title = mapTitle(value);
+    const query = title && title !== 'Google 지도' ? title : value;
+    return `https://www.google.com/maps?q=${encodeURIComponent(query)}&output=embed`;
   }
 
   function readableUrlTitle(url) {
@@ -656,7 +701,9 @@
   function addLinkRow(url='') {
     const row = document.createElement('div');
     row.className = 'link-row';
+    row.draggable = true;
     row.innerHTML = `
+      <span class="link-drag" title="드래그해서 순서 변경" aria-hidden="true">⋮⋮</span>
       <span class="type-badge">링크</span>
       <input type="text" placeholder="구글맵 또는 유튜브 URL" value="${escapeHtml(url)}">
       <button class="square-btn" type="button" aria-label="링크 삭제">×</button>
@@ -678,6 +725,16 @@
     $('#linkList').appendChild(row);
     update();
     setTimeout(() => input.focus(), 30);
+  }
+
+  function getLinkDragAfterElement(container, y) {
+    const rows = $$('.link-row:not(.dragging)', container);
+    return rows.reduce((closest, child) => {
+      const box = child.getBoundingClientRect();
+      const offset = y - box.top - box.height / 2;
+      if (offset < 0 && offset > closest.offset) return { offset, element: child };
+      return closest;
+    }, { offset: Number.NEGATIVE_INFINITY, element: null }).element;
   }
 
   function saveEntry() {
@@ -912,6 +969,32 @@
         if (entryTitleInput.value.trim() !== entryTitleAutoValue) {
           entryTitleAutoFilled = false;
         }
+      });
+    }
+
+    const linkList = $('#linkList');
+    if (linkList) {
+      linkList.addEventListener('dragstart', (e) => {
+        const row = e.target.closest('.link-row');
+        if (!row) return;
+        row.classList.add('dragging');
+        if (e.dataTransfer) {
+          e.dataTransfer.effectAllowed = 'move';
+          e.dataTransfer.setData('text/plain', 'link-row');
+        }
+      });
+
+      linkList.addEventListener('dragover', (e) => {
+        const dragging = linkList.querySelector('.link-row.dragging');
+        if (!dragging) return;
+        e.preventDefault();
+        const after = getLinkDragAfterElement(linkList, e.clientY);
+        linkList.insertBefore(dragging, after || null);
+      });
+
+      linkList.addEventListener('dragend', () => {
+        const dragging = linkList.querySelector('.link-row.dragging');
+        if (dragging) dragging.classList.remove('dragging');
       });
     }
 

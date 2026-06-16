@@ -1846,3 +1846,50 @@ body.modal-open {
     min-height: 40px;
   }
 }
+
+
+/* =========================================================
+   V13 audit fixes: map route support + link row reordering
+   ========================================================= */
+.link-row {
+  grid-template-columns: 28px 74px minmax(0, 1fr) 38px !important;
+}
+
+.link-drag {
+  width: 28px;
+  min-height: 34px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  background: color-mix(in srgb, var(--panel2), #000 4%);
+  cursor: grab;
+  user-select: none;
+}
+
+.link-row.dragging {
+  opacity: .62;
+  outline: 2px dashed var(--amber);
+  outline-offset: 2px;
+}
+
+@media (max-width: 640px) {
+  .link-row {
+    grid-template-columns: 30px 1fr 38px !important;
+  }
+
+  .link-row .type-badge {
+    grid-column: 2 / 3 !important;
+    justify-content: center !important;
+  }
+
+  .link-row input {
+    grid-column: 1 / -1 !important;
+  }
+
+  .link-row .square-btn {
+    grid-column: 3 / 4 !important;
+    grid-row: 1 / 2 !important;
+  }
+}
