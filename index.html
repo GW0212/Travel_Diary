@@ -536,23 +536,52 @@
     try {
       const parsed = new URL(value);
       const host = parsed.hostname.toLowerCase();
+      const decoded = decodeURIComponent(value);
 
       if (/google\./.test(host) && parsed.pathname.includes('/maps')) {
-        parsed.searchParams.set('output', 'embed');
-        return parsed.toString();
+        const dirMatch = decoded.match(/\/dir\/([^?#]+)/);
+        if (dirMatch) {
+          const parts = dirMatch[1].split('/').map(cleanMapPart).filter(Boolean);
+          if (parts.length >= 2) {
+            return `https://maps.google.com/maps?saddr=${encodeURIComponent(parts[0])}&daddr=${encodeURIComponent(parts[1])}&output=embed`;
+          }
+        }
+
+        const placeMatch = decoded.match(/\/place\/([^/?]+)/);
+        if (placeMatch) {
+          return `https://maps.google.com/maps?q=${encodeURIComponent(cleanMapPart(placeMatch[1]))}&output=embed`;
+        }
+
+        const q = parsed.searchParams.get('q');
+        if (q) {
+          return `https://maps.google.com/maps?q=${encodeURIComponent(q)}&output=embed`;
+        }
+
+        const origin = parsed.searchParams.get('origin');
+        const destination = parsed.searchParams.get('destination');
+        if (origin && destination) {
+          return `https://maps.google.com/maps?saddr=${encodeURIComponent(origin)}&daddr=${encodeURIComponent(destination)}&output=embed`;
+        }
+        if (destination) {
+          return `https://maps.google.com/maps?q=${encodeURIComponent(destination)}&output=embed`;
+        }
       }
 
-      /* maps.app.goo.gl short URLs must not be embedded as a search query.
-         Passing them as q=short-url only shows a world map. Let the iframe follow
-         the redirect directly, which restores the previous behavior for short links. */
       if (isMapsShortUrl(value)) {
-        return value;
+        const title = mapTitle(value);
+        if (title && !/^Google 지도/.test(title)) {
+          if (title.includes('→')) {
+            const [from, to] = title.split('→').map((part) => part.trim()).filter(Boolean);
+            if (from && to) return `https://maps.google.com/maps?saddr=${encodeURIComponent(from)}&daddr=${encodeURIComponent(to)}&output=embed`;
+          }
+          return `https://maps.google.com/maps?q=${encodeURIComponent(title)}&output=embed`;
+        }
       }
     } catch {}
 
     const title = mapTitle(value);
     const query = title && !/^Google 지도/.test(title) ? title : value;
-    return `https://www.google.com/maps?q=${encodeURIComponent(query)}&output=embed`;
+    return `https://maps.google.com/maps?q=${encodeURIComponent(query)}&output=embed`;
   }
 
   function readableUrlTitle(url) {
